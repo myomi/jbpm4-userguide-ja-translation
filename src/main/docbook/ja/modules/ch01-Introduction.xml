@@ -1,12 +1,12 @@
 <chapter id="introduction">
-  <title>Introduction</title>
+  <title>イントロダクション</title>
 
-  <para>This documentation is best viewed in <ulink url="http://www.mozilla.com/firefox/">firefox</ulink>. There are some known issues
-  with internet explorer.
+  <para>本書は<ulink url="http://www.mozilla.com/firefox/">firefox</ulink>での閲覧に最適化されています。
+  internet explorerでは正しく見えないことがあります。
   </para>
   
   <section>
-    <title>License and EULA</title>
+    <title>ライセンスとEULA</title>
     <para>jBPM is distributed under the terms of the 
     GNU Lesser General Public License (LGPL) and the JBoss End User License Agreement (EULA).  
     See <ulink url="../../../license.txt">the full LGPL license text</ulink> and <ulink url="../../../jboss.eula.txt">the 
@@ -15,51 +15,46 @@
   </section>
 
   <section>
-    <title>Downloads</title>
-    <para>The distribution packages can be downloaded from sourceforge
+    <title>ダウンロード</title>
+    <para>jBPMのディストリビューションは、sourceforgeからダウンロードできます。
     </para>
     <ulink url="http://sourceforge.net/projects/jbpm/files/">http://sourceforge.net/projects/jbpm/files/</ulink>
   </section>
 
   <section>
-    <title>Sources</title>
-    <para>The source code for this component can be found in the jBPM SVN repository:
+    <title>ソースコード</title>
+    <para>このコンポーネントのソースコードは、jBPM SVN リポジトリにあります。
     </para>
     <ulink url="https://anonsvn.jboss.org/repos/jbpm/jbpm4/">https://anonsvn.jboss.org/repos/jbpm/jbpm4/</ulink>
   </section>
 
   <section>
-    <title>What is it</title>
-    <para>jBPM is an extensible and flexible process engine that can run 
-    as a standalone server or embedded in any Java application.
+    <title>jBPMとは</title>
+    <para>jBPMは拡張性と柔軟性を備えたプロセスエンジンです。スタンドアロンサーバとしても、任意のJavaアプリケーションに組み込んで実行することもできます。
     </para>
   </section>  
 
   <section>
-    <title>Contents of this userguide</title>
-    <para>In this user guide, we'll describe the jPDL 
-    process language in persistent execution mode.  Persistent 
-    execution mode means that process definitions, process executions 
-    and process history is stored in a relational DB.  This is the common way 
-    of how jBPM is used in practice. 
+    <title>本書の内容</title>
+    <para>このユーザガイドでは、永続化実行モードにおけるjPDFプロセス言語について説明します。
+    永続化実行モードとは、プロセス定義、プロセス実行の情報、プロセスの実行履歴がリレーショナルデータベースに保存される
+    ことを意味します。このモードがjBPMを使う際の一般的な方法です。
     </para>
-    <para>This user guide explains the supported way on how to use jBPM.
-    The developers guide explains more advanced customization options that 
-    are not part of the support offerings. 
+    <para>本書ではjBPMの使い方のうち、サポートされているものについて説明します。
+    ディベロッパーガイドでは、まだサポート外の、より進んだカスタマイズ方法について説明します。
     </para>
   </section>
 
   <section>
-    <title>Migration from jBPM 3</title>
-    <para>Migration from jBPM 3 to jBPM 4 is not supported. 
-    Check out the developers guide for hints on how to perform the migration.
+    <title>jBPM 3からの移行</title>
+    <para>jBPM 3からjBPM 4への移行はサポートされていません。
+    移行方法のヒントについは、ディベロッパーガイドを参照してください。
     </para>
   </section>
 
   <section>
-    <title>Reporting problems</title>
-    <para>When reporting a problem in the user forum or in our support portal, please 
-    use the following snippet as a template:
+    <title>問題を報告するには</title>
+    <para>jBPMサポートポータルのユーザフォーラムに問題を報告する際は、以下のテンプレートを使用してください。
     </para>
     <programlisting><emphasis role="bold">=== Environment ==============================</emphasis>
 - <emphasis role="bold">jBPM Version</emphasis> : which version of jBPM are you using?
