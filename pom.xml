@@ -18,16 +18,19 @@
 
   <name>jBPM 4 - User Guide</name>
   <groupId>org.jbpm.jbpm4</groupId>
-  <artifactId>jbpm-userguide</artifactId>
+  <artifactId>jbpm-userguide-ja-translation</artifactId>  
+  <version>4.2-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <!-- Parent -->
+  <!--
   <parent>
     <groupId>org.jbpm.jbpm4</groupId>
     <artifactId>jbpm</artifactId>
     <version>4.2-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
+  -->
 
   <dependencies>
     <!-- 
@@ -75,9 +78,9 @@
 
         <configuration>
           <sourceDocumentName>master.xml</sourceDocumentName>
-          <masterTranslation>en</masterTranslation>
+          <masterTranslation>ja</masterTranslation>
           <imageResource>
-            <directory>${basedir}/src/main/docbook/en</directory>
+            <directory>${basedir}/src/main/docbook/ja</directory>
             <includes>
               <include>images/*.png</include>
             </includes>
