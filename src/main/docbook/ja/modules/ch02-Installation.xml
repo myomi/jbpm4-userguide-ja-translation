@@ -1,34 +1,34 @@
 <chapter id="installation">
-  <title>Installation</title>
+  <title>インストール</title>
   
   <section id="thedistribution">
-    <title>The distribution</title>
-    <para>Unzip the jBPM download (<literal>jbpm-4.X.zip</literal>) to some location on your hard drive.
-    You'll see following subdirectories:
+    <title>ディストリビューション</title>
+    <para>ダウンロードしたjBPM (<literal>jbpm-4.X.zip</literal>) を任意の場所にunzipしてください。
+    すると、以下のサブディレクトリが展開されます。
     </para>
     <itemizedlist>
-      <listitem><literal>doc</literal>: User guide, javadocs and developers guide</listitem>
-      <listitem><literal>examples</literal>: Example processes that are used in the user guide</listitem>
-      <listitem><literal>install</literal>: Installation scripts for several environments</listitem>
-      <listitem><literal>lib</literal>: Third party libs and some special jBPM libraries</listitem>
-      <listitem><literal>src</literal>: Source files</listitem>
-      <listitem><literal>migration</literal>: see developers guide</listitem>
-      <listitem><literal>jbpm.jar</literal>: The jBPM main library archive</listitem>
+      <listitem><literal>doc</literal>: ユーザガイド、javadocファイル、ディベロッパーガイド</listitem>
+      <listitem><literal>examples</literal>: このユーザガイドで使用している例</listitem>
+      <listitem><literal>install</literal>: 環境ごとのインストールスクリプト</listitem>
+      <listitem><literal>lib</literal>: サードパーティのライブラリと特別なjBPM向けライブラリ</listitem>
+      <listitem><literal>src</literal>: ソースコードファイル</listitem>
+      <listitem><literal>migration</literal>: ディベロッパーガイドを参照してください</listitem>
+      <listitem><literal>jbpm.jar</literal>: jBPMのメインライブラリアーカイブ</listitem>
     </itemizedlist>
   </section>
 
   <section>
-    <title>Required software</title>
-    <para>jBPM requires a JDK (standard java) version 5 or higher.
+    <title>必要なソフトウェア</title>
+    <para>jBPMは、JDK (standard java) version 5以上が必要です。
     </para>
     <ulink url="http://java.sun.com/javase/downloads/index.jsp">http://java.sun.com/javase/downloads/index.jsp</ulink>
-    <para>To execute the ant scripts, you'll need apache ant version <emphasis role="bold">1.7.0</emphasis> or higher:
+    <para>antスクリプトを実行するのに、apache ant version <emphasis role="bold">1.7.0</emphasis>以上が必要です。
     </para>
     <ulink url="http://ant.apache.org/bindownload.cgi">http://ant.apache.org/bindownload.cgi</ulink>
   </section>
 
   <section id="gettingstartedquickly">
-    <title>Getting started quickly</title>
+    <title>さっそく始めてみよう</title>
     <para>The <emphasis role="bold">demo setup</emphasis> is the simplest way to get started.
     This section describes the steps to complete the demo setup.
     </para>
@@ -38,13 +38,12 @@
     The same is holds for eclipse-jee-galileo-win32.zip (or eclipse-jee-galileo-linux-gtk(-x86_64).tar.gz on Linux 
     and eclipse-jee-galileo-macosx-carbon.tar.gz on Mac OSX)
     </para>
-    <para>Open a command prompt and go do directory <literal>${jbpm.home}/install</literal>.  Then 
-    run
+    <para>コマンドプロンプトを開き、<literal>${jbpm.home}/install</literal>ディレクトリに移動します。そして、以下のコマンドを実行します。
     </para>
     <programlisting>ant demo.setup.jboss</programlisting>
-    <para>or</para>
+    <para>もしくは</para>
     <programlisting>ant demo.setup.tomcat</programlisting>
-    <para>That will</para>
+    <para>すると、以下の処理が実行されます。</para>
     <itemizedlist>
       <listitem>Install JBoss into the <literal>${jbpm.home}/jboss-5.0.0.GA</literal> directory</listitem>
       <listitem>Install jBPM into that JBoss installation.</listitem>
