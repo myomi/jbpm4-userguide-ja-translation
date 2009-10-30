@@ -19,7 +19,7 @@
   <name>jBPM 4 - User Guide</name>
   <groupId>org.jbpm.jbpm4</groupId>
   <artifactId>jbpm-userguide-ja-translation</artifactId>  
-  <version>4.2-SNAPSHOT</version>
+  <version>4.3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <!-- Parent -->

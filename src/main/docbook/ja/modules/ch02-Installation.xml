@@ -29,14 +29,14 @@
 
   <section id="gettingstartedquickly">
     <title>さっそく始めてみよう</title>
-    <para>The <emphasis role="bold">demo setup</emphasis> is the simplest way to get started.
-    This section describes the steps to complete the demo setup.
+    <para>手っ取り早くjBPMを始めるには、<emphasis role="bold">demo setup</emphasis>がよいでしょう。
+    この章では、demo setupの手順を説明します。
     </para>
-    <para>If you have previously downloaded <literal>jboss-5.0.0.GA.zip</literal>, you can drop it 
-    in the <literal>${jbpm.home}/install/downloads</literal> directory.
-    Otherwise the script will download it for you, but it will take some time (depending on your connection).
-    The same is holds for eclipse-jee-galileo-win32.zip (or eclipse-jee-galileo-linux-gtk(-x86_64).tar.gz on Linux 
-    and eclipse-jee-galileo-macosx-carbon.tar.gz on Mac OSX)
+    <para>すでに<literal>jboss-5.0.0.GA.zip</literal>をダウンロード済みなら、それを 
+    <literal>${jbpm.home}/install/downloads</literal>ディレクトリに置いてください。
+    ダウンロード済みでなければ、後述するスクリプトがダウンロードしてくれます。ダウンロードの分だけ時間を食いますが（ネットワーク環境次第）。
+    同じことが、eclipse-jee-galileo-win32.zip (Linuxなら eclipse-jee-galileo-linux-gtk(-x86_64).tar.gz
+    Mac OSXならeclipse-jee-galileo-macosx-carbon.tar.gz)についても言えます。
     </para>
     <para>コマンドプロンプトを開き、<literal>${jbpm.home}/install</literal>ディレクトリに移動します。そして、以下のコマンドを実行します。
     </para>
@@ -45,36 +45,34 @@
     <programlisting>ant demo.setup.tomcat</programlisting>
     <para>すると、以下の処理が実行されます。</para>
     <itemizedlist>
-      <listitem>Install JBoss into the <literal>${jbpm.home}/jboss-5.0.0.GA</literal> directory</listitem>
-      <listitem>Install jBPM into that JBoss installation.</listitem>
-      <listitem>Install hsqldb and start it in the background</listitem>
-      <listitem>Create the DB Schema</listitem>
-      <listitem>Start JBoss in the background.</listitem>
-      <listitem>Create an examples.bar business archive from the examples and deploy it to the jBPM DB.</listitem>
-      <listitem>Load the example users and groups from <literal>${jbpm.home}/install/src/demo/example.identities.sql</literal> </listitem>
-      <listitem>Install eclipse into <literal>${jbpm.home}/eclipse</literal></listitem>
-      <listitem>Install the jBPM web console</listitem>
-      <listitem>Install the Signavio web modeler</listitem>
-      <listitem>Start eclipse</listitem>
+      <listitem>JBoss<literal>${jbpm.home}/jboss-5.0.0.GA</literal>ディレクトリにインストールします。</listitem>
+      <listitem>先ほどのJBossにjBPMをインストールします。</listitem>
+      <listitem>hsqldbをインストールして、バックグラウンドで起動します。</listitem>
+      <listitem>jBPMの動作に必要なDBスキーマを作成します。</listitem>
+      <listitem>バックグラウンドでJBossを起動します。</listitem>
+      <listitem>examplesディレクトリからexamples.barというファイル名のビジネスアーカイブを作成し、先ほど作成したjBPM用のDBにデプロイします。</listitem>
+      <listitem><literal>${jbpm.home}/install/src/demo/example.identities.sql</literal>を実行して、example用のユーザとグループをロードします。</listitem>
+      <listitem>Eclipseを<literal>${jbpm.home}/eclipse</literal>フォルダにインストールします。</listitem>
+      <listitem>jBPM web consoleをインストールします。</listitem>
+      <listitem>Signavio web modelerをインストールします。</listitem>
+      <listitem>eclipseを起動します。</listitem>
     </itemizedlist>
     <para>
-      After this is done, JBoss (or Tomcat, depending on which demo.setup script you chose) 
-      will be running in the background. Once eclipse has started, you can continue to follow the instructions of
-      <xref linkend="graphicalprocessdesigner" /> to start coding your jBPM business processes.
+      コマンド実行後は、JBoss (またはTomcat、実行したdemo.setupスクリプトに依ります)がバックグラウンドで実行されているでしょう。 
+      eclipseが起動したら、<xref linkend="graphicalprocessdesigner" />を参照しながら、jBPMビジネスプロセスを書いてみましょう。
     </para>
     <para>
-      Or you can start modeling processes through 
-      <ulink url="http://localhost:8080/jbpmeditor/p/explorer">the Signavio web editor</ulink>.
+      もしくは<ulink url="http://localhost:8080/jbpmeditor/p/explorer">the Signavio web editor</ulink>を使って、プロセスのモデリングを始めてもかまいません。
     </para>
-    <para>Or surf to <ulink url="http://localhost:8080/jbpm-console">the jBPM console</ulink>.
-    You can login as one of the following users:
+    <para>または、<ulink url="http://localhost:8080/jbpm-console">the jBPM console</ulink>を眺めてみるのもよいでしょう。
+    jBPM consoleには、以下のユーザをどれかを使えばログインできます。
     </para>
-    <table><title>Example console users:</title>
+    <table><title>お試し用のユーザ:</title>
       <tgroup cols="2" rowsep="1" colsep="1">
         <thead>
           <row>
-            <entry>Username</entry>
-            <entry>Password</entry>
+            <entry>ユーザ名</entry>
+            <entry>パスワード</entry>
           </row>
         </thead>
         <tbody>
@@ -98,13 +96,12 @@
       </tgroup>
     </table>
     <para>
-    <emphasis role="bold">Known console limitation</emphasis>:
-    Currently, the timeout of the console is too tight for the reporting
-    to initialize on slower machines. So the first time when you access
-    the reporting the request will timeout and the console crashes.
-    Logging out and login again works around this problem. It's being
-    addressed as issue
-    <ulink url="https://jira.jboss.org/jira/browse/JBPM-2508">JBPM-2508</ulink>
+    <emphasis role="bold">console の既知の制限事項</emphasis>:
+    今のところ、遅いマシンでレポートを初期化すると、タイムアウトしやすいです。
+    したがって、初めてレポートにアクセスする際は、リクエストがタイムアウトして
+    コンソールが異常終了してしまうでしょう。
+    一旦ログアウトしてからログインし直せば、この問題を回避できます。
+    この問題は、<ulink url="https://jira.jboss.org/jira/browse/JBPM-2508">JBPM-2508</ulink>に報告されています。
   </para>
   </section>
 
