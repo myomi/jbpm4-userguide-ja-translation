@@ -4,7 +4,7 @@
   <para>A business archive is a collection of files 
   assembled in a jar formatted file.  The files in 
   a business archive can be jPDL process files, forms,
-  process image and other process resources.
+  classes, process image and other process resources.
   </para>
   
   <section id="deployingprocessfilesandprocessresources">
@@ -16,7 +16,7 @@
     </para>
     
     <para>There is a jBPM ant task to deploy business archives
-    (<literal>org.jbpm.pvm.internal.ant.JbpmDeployTask</literal>)
+    (<literal>org.jbpm.pvm.internal.ant.JbpmDeployTask</literal>).
     The <literal>JbpmDeployTask</literal> can deploy individual  
     process files and business archives.  They are deployed  
     directly to the database over a JDBC connection.  So it is a 
@@ -40,7 +40,7 @@
 
     <para>The JDBC driver jar(s) for your database should also be included
     in the path.  MySQL, PostgreSQL and HSQLDB are in the distribution.  But
-    the oracle driver you have to download separately from the oracle site since 
+    the Oracle driver you have to download separately from the oracle site since 
     we're not allowed to redistribute that file. 
     </para>
 
@@ -58,22 +58,21 @@
     </para>
     
     <programlisting>&lt;jar destfile=&quot;${jbpm.home}/examples/target/examples.bar&quot;&gt;
-      &lt;fileset dir=&quot;${jbpm.home}/examples/src&quot;&gt;
-        &lt;include name=&quot;**/*.jpdl.xml&quot; /&gt;
-        ...
-      &lt;/fileset&gt;
-    &lt;/jar&gt;</programlisting>
+  &lt;fileset dir=&quot;${jbpm.home}/examples/src&quot;&gt;
+    &lt;include name=&quot;**/*.jpdl.xml&quot; /&gt;
+    ...
+  &lt;/fileset&gt;
+&lt;/jar&gt;</programlisting>
     
     <para>Before the jbpm-deploy task can be used it need to be declared like this:</para>
     
     <programlisting>&lt;taskdef name=&quot;jbpm-deploy&quot;
-           classname=&quot;org.jbpm.pvm.internal.ant.JbpmDeployTask&quot;
-         classpathref=&quot;jbpm.libs.incl.dependencies&quot; /&gt;</programlisting>
+    classname=&quot;org.jbpm.pvm.internal.ant.JbpmDeployTask&quot;
+    classpathref=&quot;jbpm.libs.incl.dependencies&quot; /&gt;</programlisting>
          
     <para>Then the ant task can be used like this</para>
     
-    <programlisting>
-  &lt;jbpm-deploy file=&quot;${jbpm.home}/examples/target/examples.bar&quot; /&gt;</programlisting>
+    <programlisting>&lt;jbpm-deploy file=&quot;${jbpm.home}/examples/target/examples.bar&quot; /&gt;</programlisting>
 
     <table><title><literal>jbpm-deploy</literal> attributes:</title>
       <tgroup cols="5" rowsep="1" colsep="1">
@@ -135,20 +134,35 @@
   
   <section id="deployingclasses">
     <title>Deploying classes</title>
-    <para>jBPM 4 does not yet have a process classloading mechanism as in jBPM 3.
+    <para>Since version 4.2 jBPM has a process classloading mechanism as in jBPM 3.
     </para>
-    <para>All the classes that are referred to 
-    in your process files, either directly or indirectly, need to be made available 
-    on the classpath of your jBPM installation.
+    <para>Classes that are referenced from processes must be made available in one of 
+    3 ways:
     </para>
+    <itemizedlist>
+      <listitem>as .class files in your business archive.  Unlike in jBPM 3, now the
+      root of the archive file is used as the root for searching class resources.
+      So when class <literal>com.superdeluxsandwiches.Order</literal>
+      is referenced in the process file, it will be found when it is in the same business 
+      archive with entry name <literal>com/superdeluxsandwiches/Order.class</literal>
+      Classes are cached (key is a combination of deployment and context classloader), so 
+      it should perform better then in jBPM 3. 
+      </listitem>
+      <listitem>as classes available in the web application that calls jBPM.  Even when 
+      jBPM is deployed server-wide on jboss or tomcat, jBPM will find the classes 
+      in your web application or enterprise application that calls jBPM.  That's because 
+      we use the current context classloader when searching for classes during process 
+      execution. 
+      </listitem>
+      <listitem>as class files that are available server-wide.  E.g. like the jars in  
+      the lib directories in tomcat and jboss.
+      </listitem>
+    </itemizedlist>
     <para>In case of the examples, an examples.jar file is created with 
     all the classes and it is put in the <literal>lib</literal> directory of the JBoss 
-    server configuration.</para>
-    <para>If you want process classloading so that user defined classes can be deployed 
-    in and loaded from the business archive, vote for it in 
-    <ulink url="https://jira.jboss.org/jira/browse/JBPM-2200">JIRA issue JBPM-2200</ulink>.
-    We'll prioritize this depending on the number of votes and on the use cases that 
-    you can add as a comment in which you explain why you need it.
+    server configuration.  Similarly for tomcat.  See target <literal>install.examples.into.tomcat</literal>
+    and <literal>install.examples.into.jboss</literal>.  In one of the future releases we might 
+    switch to include the classes in the business archive itself.
     </para>
   </section>
 

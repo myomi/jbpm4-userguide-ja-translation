@@ -373,7 +373,7 @@
       <title>Get Eclipse</title>
       <para>You'll need Eclipse 3.5.0.
       </para>
-      <para>Use the <link linkend="gettingstarted">demo setup</link> or download 
+      <para>Use the <link linkend="gettingstartedquickly">demo setup</link> or download 
       eclipse manually:      
       <ulink url="http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/galileo">Eclipse IDE for Java EE Developers (163 MB)</ulink>.
       </para>

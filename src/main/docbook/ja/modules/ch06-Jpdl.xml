@@ -2,18 +2,19 @@
   <title>jPDL</title>
   
   <para>This chapter will explain the jPDL file format for describing 
-  process definitions.  
+  process definitions. jPDL is the prominent process language of jBPM. The goal
+  of jPDL is to be as concise and developer-friendly as possible, while offering
+  every feature you'd expect from a BPM process language.
   </para>
   <para>The jPDL schema file contains more attributes and elements then this 
-  documentation.  This documentation explains the stable and supported part of jPDL.
-  So use this documentation as a reference to know what attributes and elements 
-  are stable and supported.   
+  documentation.  This part of the documentation explains the stable and supported part of jPDL.
+  Experimental/not supported jPDL features can be found in the developers guide. 
   </para>
   <para>An example jPDL process file looks like this: 
   </para>
   <programlisting>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 
-&lt;process name=&quot;Purchase order&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+&lt;process name=&quot;Purchase order&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;start&gt;
     &lt;transition to=&quot;Verify supplier&quot; /&gt;
@@ -176,7 +177,7 @@
     <section id="state">
       <title><literal>state</literal></title>
       <para>A wait state.  Process execution will wait until an external trigger is 
-      provided through the API.  Apart from the <link linkend="commonactivitycontent">
+      provided through the API.  Apart from the <link linkend="commonactivitycontents">
       common activity content</link>, <literal>state</literal> doesn't have any extra
       attributes or elements. 
       </para>
@@ -188,7 +189,7 @@
           <title>A sequence of states</title>
           <mediaobject><imageobject><imagedata align="center" fileref="images/process.state.sequence.png"/></imageobject></mediaobject>
         </figure>
-        <programlisting>&lt;process name=&quot;StateSequence&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+        <programlisting>&lt;process name=&quot;StateSequence&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;start&gt;
     &lt;transition to=&quot;a&quot; /&gt;
@@ -232,7 +233,7 @@ assertNotNull(executionInC);</programlisting>
           <title>A choice between state</title>
           <mediaobject><imageobject><imagedata align="center" fileref="images/process.state.choice.png"/></imageobject></mediaobject>
         </figure>
-        <programlisting>&lt;process name=&quot;StateChoice&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+        <programlisting>&lt;process name=&quot;StateChoice&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;start&gt;
     &lt;transition to=&quot;wait for response&quot; /&gt;
@@ -403,7 +404,7 @@ ProcessInstance processInstance =
           <title>The decision expression example process</title>
           <mediaobject><imageobject><imagedata align="center" fileref="images/process.decision.png"/></imageobject></mediaobject>
         </figure>
-        <programlisting>&lt;process name=&quot;DecisionExpression&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+        <programlisting>&lt;process name=&quot;DecisionExpression&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;start &gt;
     &lt;transition to=&quot;evaluate document&quot;/&gt;
@@ -538,7 +539,7 @@ ProcessInstance processInstance =
         <mediaobject><imageobject><imagedata align="center" fileref="images/process.concurrency.png"/></imageobject></mediaobject>
       </figure>
       
-      <programlisting>&lt;process name=&quot;ConcurrencyGraphBased&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+      <programlisting>&lt;process name=&quot;ConcurrencyGraphBased&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
    &lt;start&gt;
       &lt;transition to=&quot;fork&quot;/&gt;
@@ -596,7 +597,7 @@ ProcessInstance processInstance =
           <title>The end event</title>
           <mediaobject><imageobject><imagedata align="center" fileref="images/process.end.processinstance.png"/></imageobject></mediaobject>
         </figure>
-        <programlisting>&lt;process name=&quot;EndProcessInstance&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+        <programlisting>&lt;process name=&quot;EndProcessInstance&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;start&gt;
     &lt;transition to=&quot;end&quot; /&gt;
@@ -713,7 +714,7 @@ processInstance = executionService.signalExecutionById(pid, &quot;400&quot;);</p
           <title>Different end states</title>
           <mediaobject><imageobject><imagedata align="center" fileref="images/process.end.state.png"/></imageobject></mediaobject>
         </figure>
-        <programlisting>&lt;process name=&quot;EndState&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+        <programlisting>&lt;process name=&quot;EndState&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;start&gt;
      &lt;transition to=&quot;get return code&quot;/&gt;
@@ -733,9 +734,7 @@ processInstance = executionService.signalExecutionById(pid, &quot;400&quot;);</p
         </programlisting>
         <para>This time, if we would start an execution and signal it to move out of the <literal>get return code</literal> wait state with the 
         following code, the execution would end with the <literal>cancel</literal> state.</para>
-        <programlisting>TODO (paste the code snippit)
-        </programlisting>
-        <para>Similarly as above, using the value <literal>200</literal> or <literal>500</literal> would cause the execution
+        <para>Similarly, using the value <literal>200</literal> or <literal>500</literal> would cause the execution
         to end with the <literal>completed</literal> or with the <literal>error</literal> states
         respectively.</para>
       </section>
@@ -962,7 +961,7 @@ taskService.findGroupTasks("joesmoe");</programlisting>
           <title>The task assignment handler example process</title>
           <mediaobject><imageobject><imagedata align="center" fileref="images/process.task.png"/></imageobject></mediaobject>
         </figure>
-        <programlisting>&lt;process name=&quot;TaskAssignmentHandler&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+        <programlisting>&lt;process name=&quot;TaskAssignmentHandler&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;start g=&quot;20,20,48,48&quot;&gt;
     &lt;transition to=&quot;review&quot; /&gt;
@@ -1098,7 +1097,7 @@ taskService.findGroupTasks("joesmoe");</programlisting>
           <mediaobject><imageobject><imagedata align="center" fileref="images/process.task.png"/></imageobject></mediaobject>
         </figure>
         <para>The task swimlane example has the following process file :</para>
-        <programlisting>&lt;process name=&quot;TaskSwimlane&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+        <programlisting>&lt;process name=&quot;TaskSwimlane&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   <emphasis role="bold">&lt;swimlane name=&quot;sales representative&quot;
             candidate-groups=&quot;sales-dept&quot; /&gt;</emphasis>
@@ -1503,7 +1502,7 @@ taskService.setVariables(taskDbid, variables);</programlisting>
           <title>The subprocess document example process</title>
           <mediaobject><imageobject><imagedata align="center" fileref="images/process.task.png"/></imageobject></mediaobject>
         </figure>
-        <programlisting>&lt;process name=&quot;SubProcessDocument&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+        <programlisting>&lt;process name=&quot;SubProcessDocument&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;start&gt;
     &lt;transition to=&quot;review&quot; /&gt;
@@ -1526,7 +1525,7 @@ taskService.setVariables(taskDbid, variables);</programlisting>
           <title>The subprocess review example process</title>
           <mediaobject><imageobject><imagedata align="center" fileref="images/process.subprocess.review.png"/></imageobject></mediaobject>
         </figure>
-        <programlisting>&lt;process name=&quot;SubProcessReview&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+        <programlisting>&lt;process name=&quot;SubProcessReview&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;start&gt;
     &lt;transition to=&quot;get approval&quot;/&gt;
@@ -1563,7 +1562,8 @@ assertEquals(&quot;This document describes how we can make more money...&quot;, 
         <para>Then we set a variable on the task.  This is typically done through a form.  But 
         here we'll show how it is done programmatically.
         </para>
-        <programlisting>Map&lt;String, Object&gt; variables = new HashMap&lt;String, Object&gt;();
+        <programlisting>
+Map&lt;String, Object&gt; variables = new HashMap&lt;String, Object&gt;();
 variables.put(&quot;result&quot;, &quot;accept&quot;);
 taskService.setVariables(task.getDbid(), variables);</programlisting>
         <para>Completing this task, will cause the sub process instance to end.
@@ -1614,7 +1614,7 @@ taskService.setVariables(task.getDbid(), variables);</programlisting>
           <title>The subprocess review example process for outcome value</title>
           <mediaobject><imageobject><imagedata align="center" fileref="images/process.subprocess.review.png"/></imageobject></mediaobject>
         </figure>
-        <programlisting>&lt;process name=&quot;SubProcessReview&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+        <programlisting>&lt;process name=&quot;SubProcessReview&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;start&gt;
     &lt;transition to=&quot;get approval&quot;/&gt;
@@ -1641,7 +1641,7 @@ Task task = taskList.get(0);
         the task is completed.
         </para>
         <programlisting>Map&lt;String, Object&gt; variables = new HashMap&lt;String, Object&gt;();
-variables.put(quot;resultquot;, quot;okquot;);
+variables.put(&quot;result&quot;, &quot;ok&quot;);
 taskService.setVariables(task.getId(), variables);
 taskService.completeTask(task.getDbid());</programlisting>
         <para>In this scenario, the <literal>ok</literal> transition is taken in 
@@ -1685,7 +1685,7 @@ taskService.completeTask(task.getDbid());</programlisting>
           <title>The subprocess review example process for outcome activity</title>
           <mediaobject><imageobject><imagedata align="center" fileref="images/process.subprocess.outcomeactivity.review.png"/></imageobject></mediaobject>
         </figure>
-        <programlisting>&lt;process name=&quot;SubProcessReview&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+        <programlisting>&lt;process name=&quot;SubProcessReview&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;start&gt;
     &lt;transition to=&quot;get approval&quot;/&gt;
@@ -1738,7 +1738,7 @@ Task task = taskList.get(0);
       the example:  
       </para>
 
-      <programlisting>&lt;process name=&quot;Custom&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+      <programlisting>&lt;process name=&quot;Custom&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;start &gt;
     &lt;transition to=&quot;print dots&quot; /&gt;
@@ -1875,7 +1875,7 @@ Task task = taskList.get(0);
         <title>A java task</title>
         <mediaobject><imageobject><imagedata align="center" fileref="images/process.java.png"/></imageobject></mediaobject>
       </figure>
-      <programlisting>&lt;process name=&quot;Java&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+      <programlisting>&lt;process name=&quot;Java&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;start &gt;
     &lt;transition to=&quot;greet&quot; /&gt;
@@ -2036,7 +2036,7 @@ Task task = taskList.get(0);
           <title>The script.expression example process</title>
           <mediaobject><imageobject><imagedata align="center" fileref="images/process.script.png"/></imageobject></mediaobject>
         </figure>
-        <programlisting>&lt;process name=&quot;ScriptExpression&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+        <programlisting>&lt;process name=&quot;ScriptExpression&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;start&gt;
     &lt;transition to=&quot;invoke script&quot; /&gt;
@@ -2141,7 +2141,7 @@ executionService.startProcessInstanceByKey(&quot;ScriptText&quot;, variables);</
           <title>The script.text example process</title>
           <mediaobject><imageobject><imagedata align="center" fileref="images/process.script.png"/></imageobject></mediaobject>
         </figure>
-        <programlisting>&lt;process name=&quot;ScriptText&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+        <programlisting>&lt;process name=&quot;ScriptText&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;start&gt;
     &lt;transition to=&quot;invoke script&quot; /&gt;
@@ -2231,7 +2231,7 @@ executionService.startProcessInstanceByKey(&quot;ScriptText&quot;, variables);</
         <title>The hql example process</title>
         <mediaobject><imageobject><imagedata align="center" fileref="images/process.hql.png"/></imageobject></mediaobject>
       </figure>
-      <programlisting>&lt;process name=&quot;Hql&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+      <programlisting>&lt;process name=&quot;Hql&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;start&gt;
     &lt;transition to=&quot;get process names&quot; /&gt;
@@ -2366,7 +2366,7 @@ executionService.startProcessInstanceByKey(&quot;ScriptText&quot;, variables);</
       <para>
       	Example usage:
      	<programlisting>
-&lt;process name=&quot;InlineMail&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+&lt;process name=&quot;InlineMail&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
   &lt;start&gt;
     &lt;transition to=&quot;send birthday reminder note&quot; /&gt;
   &lt;/start&gt;
@@ -2452,7 +2452,8 @@ executionService.startProcessInstanceByKey(&quot;ScriptText&quot;, variables);</
     <title>Events</title>
     <para>Events specify points in a process on which a list of event listeners can be registered.
     When an execution passes that point in the process, the event listeners are notified.
-    The events and listeners are not shown in the graphical view of the process. An event 
+    The events and listeners are not shown in the graphical view of the process, which
+    makes them very interesting for implementing technical details. An event 
     is fired by an element in the process definition like e.g. the process definition, 
     an activity or a transition.  
     </para>
@@ -2566,7 +2567,7 @@ executionService.startProcessInstanceByKey(&quot;ScriptText&quot;, variables);</
 	      <title>The event listener example process</title>
 	      <mediaobject><imageobject><imagedata align="center" fileref="images/process.eventlistener.png"/></imageobject></mediaobject>
 	    </figure>
-	    <programlisting>&lt;process name=&quot;EventListener&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+	    <programlisting>&lt;process name=&quot;EventListener&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;on event=&quot;start&quot;&gt;
     &lt;event-listener class=&quot;org.jbpm.examples.eventlistener.LogListener&quot;&gt;
@@ -2599,8 +2600,7 @@ executionService.startProcessInstanceByKey(&quot;ScriptText&quot;, variables);</
   &lt;state name=&quot;park&quot;/&gt;
 
 &lt;/process&gt;</programlisting>
-	    <para><literal>LogListener</literal>  will maintain a list of logs in a static member 
-	    field:</para>
+	    <para><literal>LogListener</literal>  will maintain a list of logs as a process variable:</para>
 	    <programlisting>public class <emphasis role="bold">LogListener</emphasis> implements EventListener {
 	
   // value gets injected from process definition
@@ -2729,7 +2729,7 @@ executionService.signalExecutionById(execution.getId());</programlisting>
         <title>The async activity example process</title>
         <mediaobject><imageobject><imagedata align="center" fileref="images/process.async.activity.png"/></imageobject></mediaobject>
       </figure>
-      <programlisting>&lt;process name=&quot;AsyncActivity&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+      <programlisting>&lt;process name=&quot;AsyncActivity&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;start&gt;
     &lt;transition to=&quot;generate pdf&quot;/&gt;
@@ -2798,7 +2798,7 @@ managementService.executeJob(job.getDbid());</programlisting>
         <title>The async fork example process</title>
         <mediaobject><imageobject><imagedata align="center" fileref="images/process.async.fork.png"/></imageobject></mediaobject>
       </figure>
-      <programlisting>&lt;process name=&quot;AsyncFork&quot; xmlns=&quot;http://jbpm.org/4.2/jpdl&quot;&gt;
+      <programlisting>&lt;process name=&quot;AsyncFork&quot; xmlns=&quot;http://jbpm.org/4.3/jpdl&quot;&gt;
 
   &lt;start &gt;
     &lt;transition to=&quot;fork&quot;/&gt;
@@ -3069,6 +3069,9 @@ assertNotNull(endTime);</programlisting>
       </para>
       <para>Objects that are referenced by an expression are calculated 
       dynamically.
+      </para>
+      <para>The devguide also explains an unsupported attribute to prevent 
+      that user objects are cached.
       </para>
     </section>
   </section>

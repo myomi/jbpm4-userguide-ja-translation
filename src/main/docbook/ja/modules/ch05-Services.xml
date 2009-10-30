@@ -57,7 +57,7 @@
     </para>
     
     <para>The code snippets in this section and the next section about process 
-    deployments are taken from example 
+    deployments are taken from the example 
     <literal>org.jbpm.examples.services.ServicesTest</literal> 
     </para>
     
@@ -217,11 +217,13 @@
       </tgroup>
     </table>
   </section>
-
+  
+<!-- 
   <section id="undeployingdeployments">
     <title>Undeploying deployments</title>
     <para>TODO</para>
   </section>
+-->
 
   <section id="deletingadeployment">
     <title>Deleting a deployment</title>
@@ -266,10 +268,11 @@
 
     <section id="withakey">
       <title>With a key</title>
-      <para>A new process instance can optionally be given a key.  A key is 
-      a user defined reference to the execution.  A key must be unique within the 
-      scope of all versions of a process definition.  Typically it is easy 
-      to find such a key in the domain of the business process.  For example, an 
+      <para>A new process instance can optionally be given a key.  This key is 
+      a user defined reference to the execution and is sometimes referred to as
+      the 'business key'.  A business key must be unique within the 
+      scope of all versions of a process definition. Typically it is easy 
+      to find such a key in the domain of the business process. For example, an 
       order id or an insurance claim number.
       </para>
       <programlisting>ProcessInstance processInstance = 
@@ -286,10 +289,10 @@
     executionService.startProcessInstanceByKey(&quot;ICL&quot;);
 String pid = processInstance.getId();</programlisting>
       </para> 
-      <para>We recommend the use of a user defined keys.  Typically in your application 
-      code, you'll have the key available.  By providing a user defined key, you can 
+      <para>It is a best practice to use a user defined business key. Typically in your application 
+      domain, finding such a key is not difficult. By providing a user defined key, you can 
       then compose the id of the execution, rather then performing a query based 
-      on the process variables.
+      on the process variables - which is also more costly performance-wise.
       </para>
     </section>
     
@@ -312,8 +315,8 @@ ProcessInstance processInstance =
   <section id="singallingawaitingexecution">
     <title>Signalling a waiting execution</title>
     <para>When using a <literal>state</literal> activity, the execution (or process instance) 
-    will wait when it arrives in the state, waiting for a signal (aka external trigger).  
-    Methods <literal>signalExecution</literal> can be used for that.  Executions are 
+    will halt when it arrives in a state, waiting for a signal (aka external trigger).  
+    The method <literal>signalExecution</literal> and alike can be used for that.  Executions are 
     referenced by an execution id (String).
     </para>
     <para>In some cases, the execution that arrives in a state will be the process instance 
@@ -333,7 +336,7 @@ ProcessInstance processInstance =
     <para>In event listener <literal>StartExternalWork</literal> you can kick off what needs to
     be done externally.  In that event listener you can also obtain the exact execution id
     with <literal>execution.getId()</literal>.  It's that executionId that you'll need to provide 
-    the signal later on when the external work is done:
+    with the signal later on when the external work is done:
     </para>
     <programlisting>executionService.signalExecutionById(executionId);</programlisting>
     <para>There is an alternatively (less preferrable) way to obtain the executionId 
@@ -352,6 +355,11 @@ ProcessInstance processInstance =
 Execution execution = processInstance.findActiveExecutionIn("external work");
 String executionId = execution.getId();</programlisting>
   </section>
+  
+  <para>
+  Do note that the above solution couples the application logic (too) closely
+  by using knowledge about the actual process structure.
+  </para>
 
   <section id="taskservice">
     <title>TaskService</title>
@@ -419,7 +427,49 @@ taskService.setVariables(taskId, variables);</programlisting>
   <section id="managementservice">
     <title>ManagementService</title>
     <para>The management service is mostly used to manage the jobs.  See javadocs for 
-    more information.  This functionality is also exposed through the console.
+    more information.  This functionality is also exposed through the jBPM web console.
+    </para>
+  </section>
+
+  <section id="queryApi">
+    <title>Query API</title>
+    <para>
+    Starting from jBPM 4.0, a new API has been introuced with a query system that 
+    covers most of the queries you can think of. Developers who need to write company-specific
+    queries can of course still rely on Hibernate. But for most use cases,
+    the query API will be more then suffice. 
+    Queries can be written in a unified way on all major jBPM concepts: 
+    Process Instances, Tasks, Deployments, Historical processes, etc.
+    </para>
+    <para>
+    For example:
+    <programlisting>
+List&lt;ProcessInstance&gt; results = executionService.createProcessInstanceQuery()
+                                       .processDefinitionId(&quot;my_process_definition&quot;)
+                                       .notSuspended()
+                                       .page(0, 50)
+                                       .list();
+    </programlisting>
+    This example returns all the process instances of the given process definition
+    which are not suspended. The result is also paged, and the first page of 50
+    results is given. 
+    </para><para>Querying tasks is done in completely the same way:
+    <programlisting>
+List&lt;Task&gt; myTasks = taskService.createTaskQuery()
+    .processInstanceId(piId)
+    .assignee(&quot;John&quot;)
+    .page(100, 120)
+    .orderDesc(TaskQuery.PROPERTY_DUEDATE)
+    .list();
+</programlisting>
+This query will give all the tasks for a given process instance assigned to John, 
+paged of course, in a descending order based on the duedate. 
+    </para>
+    <para>
+    Every service has operations of creating such unified queries (eg. querying
+    jobs through the <literal>ManagementService</literal>, querying completed
+    process instances through the <literal>HistoryService</literal>. Do check
+    the Javadoc of the services to learn everything about the query API.
     </para>
   </section>
 
