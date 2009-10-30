@@ -106,7 +106,7 @@
   </section>
 
   <section id="installscripts">
-    <title>Install scripts</title>
+    <title>インストールスクリプト</title>
 	  <para>The jBPM download contains an <literal>install</literal> directory
 	  with an ant <link>build.xml</link> file in it.  You can use that to 
 	  install jBPM into your application environment. 
@@ -255,7 +255,7 @@
   </section>
 
   <section id="librarydependenciesandconfigurationfiles">
-    <title>Library dependencies and configuration files</title>
+    <title>依存ライブラリと設定ファイル</title>
     <para>We provide support for installations of jBPM through our automatic ant  
     scripts.  Those scripts will put the right libs and the right configuration 
     files in the right location for you. If you want to create your own installation of 
@@ -295,7 +295,7 @@
   </section>
 
   <section id="userwebapp">
-    <title>User webapp</title>
+    <title>自分のwebアプリケーションに組み込むには</title>
     <para>If you want to deploy jBPM as a part of your web application, use the
     install target <literal>create.user.webapp</literal>.  That will 
     create a web application with jBPM in it, in the location <literal>${jbpm.home}/install/generated/user-webapp</literal>.  
@@ -306,7 +306,7 @@
   </section>
 
   <section id="database">
-    <title>Database</title>
+    <title>データベース</title>
     <para>The install script is also capable of performing database operations
     such as creating the schema, if you are installing jBPM for the first time,
     or upgrading the database used with a previous version to the current schema.
@@ -317,7 +317,7 @@
     </para>
 
     <section id="createdropdb">
-      <title>Creating or dropping the database schema</title>
+      <title>データベーススキーマを生成、削除するには</title>
       <para>To create the schema, run target <literal>create.jbpm.schema</literal>
       in the <literal>${jbpm.home}/install</literal> directory. Apart from
       creating tables and constraints, the mentioned target will initialize
@@ -330,7 +330,7 @@
     </section>
 
     <section id="upgradedb">
-      <title>Upgrading an existing database</title>
+      <title>既存のデータベースをアップグレードするには</title>
       <para>To upgrade, run target <literal>upgrade.jbpm.schema</literal>
       in the <literal>${jbpm.home}/install</literal> directory.</para>
       <para>Upgrading is a two-fold operation. The foremost step is to add
@@ -476,19 +476,18 @@
     </section>
     
     <section>
-      <title>Importing the Examples</title>
-      <para>In this section we will import the examples project in the 
-      installation in Eclipse
+      <title>Examplesをインポートする</title>
+      <para>この章では、Eclipseにexamplesプロジェクトをインポートする手順を説明します。
       </para>
       <itemizedlist>
-        <listitem>Select <literal>File</literal> --> <literal>Import...</literal> </listitem>
-        <listitem>Select <literal>General</literal> --> <literal>Existing Projects into Workspace</literal> </listitem>
-        <listitem>Click <literal>Next</literal></listitem>
-        <listitem>Click <literal>Browse...</literal> to select a root directory</listitem>
-        <listitem>Navigate to the jBPM root installation directory</listitem>
-        <listitem>Click <literal>OK</literal> </listitem>
-        <listitem>The <literal>examples</literal> project is automatically found and selected</listitem>
-        <listitem>Click <literal>Finish</literal> </listitem>
+        <listitem><literal>File</literal> --> <literal>Import...</literal>を選択します。</listitem>
+        <listitem><literal>General</literal> --> <literal>Existing Projects into Workspace</literal>を選択します。</listitem>
+        <listitem><literal>Next</literal>をクリックします。</listitem>
+        <listitem><literal>Browse...</literal>をクリックして、ファイル選択ダイアログを表示させます。</listitem>
+        <listitem>jBPMをインストールしたルートディレクトリを指定します。</listitem>
+        <listitem><literal>OK</literal>をクリックします。</listitem>
+        <listitem><literal>examples</literal>プロジェクトが自動的に検索され、選択された状態になっていることを確認します。</listitem>
+        <listitem><literal>Finish</literal>をクリックします。</listitem>
       </itemizedlist>
       <para>After setting the <link linkend="definejbpmuserlibraries">jBPM User Libraries</link> 
       and importing the examples, all the examples can be run as JUnit tests.  Right click 
