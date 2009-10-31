@@ -13,7 +13,7 @@
       <listitem><literal>lib</literal>: サードパーティのライブラリと特別なjBPM向けライブラリ</listitem>
       <listitem><literal>src</literal>: ソースコードファイル</listitem>
       <listitem><literal>migration</literal>: ディベロッパーガイドを参照してください</listitem>
-      <listitem><literal>jbpm.jar</literal>: jBPMのメインライブラリアーカイブ</listitem>
+      <listitem><literal>jbpm.jar</literal>: jBPMの本体</listitem>
     </itemizedlist>
   </section>
 
@@ -58,7 +58,7 @@
       <listitem>eclipseを起動します。</listitem>
     </itemizedlist>
     <para>
-      コマンド実行後は、JBoss (またはTomcat、実行したdemo.setupスクリプトに依ります)がバックグラウンドで実行されているでしょう。 
+      コマンド実行後は、JBoss (またはTomcat、実行したdemo.setupスクリプトに依ります)がバックグラウンドで実行されます。 
       eclipseが起動したら、<xref linkend="graphicalprocessdesigner" />を参照しながら、jBPMビジネスプロセスを書いてみましょう。
     </para>
     <para>
@@ -107,28 +107,27 @@
 
   <section id="installscripts">
     <title>インストールスクリプト</title>
-	  <para>The jBPM download contains an <literal>install</literal> directory
-	  with an ant <link>build.xml</link> file in it.  You can use that to 
-	  install jBPM into your application environment. 
+	  <para>jBPMの<literal>install</literal>ディレクトリに、
+	  antの<link>build.xml</link>が含まれています。これを使って、jBPMをご自身のアプリケーション環境にインストール
+	  することができます。
 	  </para>
 	     
-	  <para>It's best to stick to the installations and jBPM configuration files 
-	  as done with these installation scripts.  Customizing jBPM configuration files 
-	  directly, is possible, but not supported. 
+	  <para>インストールスクリプトがそうしているように、jBPMのインストール後の状態と設定ファイルを直接編集すべきではありません。
+	  jBPMの設定ファイルを直接編集することも可能ですが、サポート対象外です。
 	  </para> 
 	
     <para>
-    To invoke the install script, open a command line and go to the 
-    <literal>${jbpm.home}/install</literal> directory.  With <literal>ant -p</literal> you can 
-    find out what each of these scripts can do. The scripts are parametrized with default values
-    to get going quickly. The following list gives an overview of the available scripts:
+    インストールスクリプトを実行するには、コマンドラインを開いて 
+    <literal>${jbpm.home}/install</literal>ディレクトリに移動してください。<literal>ant -p</literal>で、スクリプトでできることを調べる
+    ことができます。手っ取り早く実行できるよう、各スクリプトはデフォルト値がセットされた状態でパラメータ化されています。
+    以下の一覧は、利用可能なスクリプトの概要です。
     </para>  
     <para>
       <itemizedlist>
       <listitem> 
-        <literal>demo.setup.jboss</literal>: installs jboss, installs jbpm into jboss, 
-        starts jboss, creates the jBPM DB schema, deploys examples, loads example identities,
-        installs and starts eclipse
+        <literal>demo.setup.jboss</literal>: jbossのインストール、jbpmをjbossにインストール
+        jbossを起動、jBPM用のDBスキーマを作成、examplesをデプロイする、お試し用ユーザ情報をロードする、
+        eclipseをインストールして起動する
       </listitem>
       <listitem>   
         <literal>demo.setup.tomcat</literal>: installs tomcat, installs jbpm into tomcat,
@@ -422,16 +421,15 @@
     </section>
 
     <section id="definejbpmuserlibraries">
-      <title>Define the jBPM User Library</title>
-      <para>This section shows how to define a user library for your workspace
-      that is a placeholder for the jBPM library as well as its dependencies. 
-      If you create a new Java project, it will be sufficient to add this user 
-      library to the build path.
+      <title>jBPMユーザライブラリを定義する</title>
+      <para>この章では、Eclipseのワークスペース用に、jBPMライブラリと依存ライブラリをユーザライブラリとして
+      定義する方法を説明します。
+      新規のJavaプロジェクトを作成する際は、このユーザライブラリをビルドパスに含めるとよいでしょう。
       </para>
       <itemizedlist>
-        <listitem>Click <literal>Window</literal> --> <literal>Preferences</literal> </listitem>
-        <listitem>Select <literal>Java</literal> --> <literal>Build Path</literal> --> <literal>User Libraries</literal> </listitem>
-        <listitem>Click <literal>New...</literal> </listitem>
+        <listitem><literal>Window</literal> --> <literal>Preferences</literal>をクリックします。</listitem>
+        <listitem><literal>Java</literal> --> <literal>Build Path</literal> --> <literal>User Libraries</literal>を選択します。</listitem>
+        <listitem><literal>New...</literal>をクリックします。</listitem>
         <listitem>Type name <literal>jBPM Libraries</literal> </listitem>
         <listitem>Click <literal>Add JARs...</literal> </listitem>
         <listitem>Navigate to the 'lib' folder of your jBPM installation</listitem>
