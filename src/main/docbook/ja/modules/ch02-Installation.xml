@@ -125,58 +125,56 @@
     <para>
       <itemizedlist>
       <listitem> 
-        <literal>demo.setup.jboss</literal>: jbossのインストール、jbpmをjbossにインストール
-        jbossを起動、jBPM用のDBスキーマを作成、examplesをデプロイする、お試し用ユーザ情報をロードする、
-        eclipseをインストールして起動する
+        <literal>demo.setup.jboss</literal>: jbossのインストール、jbpmをjbossにインストール、
+        jbossを起動、jBPM用のDBスキーマを作成、examplesをデプロイ、お試し用ユーザ情報をロードする、
+        eclipseをインストールして起動
       </listitem>
       <listitem>   
-        <literal>demo.setup.tomcat</literal>: installs tomcat, installs jbpm into tomcat,
-        starts tomcat, creates the jBPM DB schema, deploys examples, loads example identities,
-        installs and starts eclipse
+        <literal>demo.setup.tomcat</literal>: tomcatのインストール、jbpmをtomcatにインストール、
+        tomcatを起動、jBPM用のDBスキーマを作成、examplesをデプロイ、お試し用ユーザ情報をロードする、
+        eclipseをインストールして起動
       </listitem>
       <listitem>
-        <literal>clean.cfg.dir</literal>: Deletes the <literal>${jbpm.home}/install/generated/cfg</literal> folder.
+        <literal>clean.cfg.dir</literal>: <literal>${jbpm.home}/install/generated/cfg</literal>フォルダを削除する。
       </listitem>
       <listitem>
-        <literal>create.cfg</literal>: Creates a configuration in 
-        <literal>${jbpm.home}/install/generated/cfg</literal> based on the current parameters.
+        <literal>create.cfg</literal>: <literal>${jbpm.home}/install/generated/cfg</literal>フォルダに現在のパラメータをもとに設定ファイルを作成する。 
       </listitem>
       <listitem>
-        <literal>create.jbpm.schema</literal>: creates the jbpm tables in the database
+        <literal>create.jbpm.schema</literal>: データベースにjbpm用のテーブルを作成する。
       </listitem>
       <listitem>   
-        <literal>create.user.webapp</literal>: Generates a basic webapp in 
-        <literal>${jbpm.home}/install/generated/user-webapp</literal>
+        <literal>create.user.webapp</literal>: <literal>${jbpm.home}/install/generated/user-webapp</literal>ディレクトリに基本的なwebアプリケーション構成を生成する。
       </listitem>
       <listitem>
-        <literal>delete.jboss</literal>: Deletes the JBoss installation
+        <literal>delete.jboss</literal>: インストールしたJBossを削除する。
       </listitem>
       <listitem>   
-        <literal>delete.tomcat</literal>: Deletes the Tomcat installation
+        <literal>delete.tomcat</literal>: インストールしたTomcatを削除する。
       </listitem>
       <listitem>   
-        <literal>demo.teardown.jboss</literal>: Drops the jbpm db schema and stops jboss
+        <literal>demo.teardown.jboss</literal>: jbpm用のDBスキーマをdropし、jbossを停止する。
       </listitem>
       <listitem>   
-        <literal>demo.teardown.tomcat</literal>: Stops tomcat and then the hsqldb server (if needed)
+        <literal>demo.teardown.tomcat</literal>: tomcatを停止し、（必要なら）hsqldbサーバも停止する。
       </listitem>
       <listitem>   
-        <literal>drop.jbpm.schema</literal>: Drops the jbpm tables from the database
+        <literal>drop.jbpm.schema</literal>: データベースからjbpm用のテーブルをdropする。
       </listitem>
       <listitem>  
-        <literal>get.eclipse</literal>: Downloads eclipse if it is not available
+        <literal>get.eclipse</literal>: まだ無ければ、eclipseをダウンロードする。
       </listitem>
       <listitem>  
-        <literal>get.jboss</literal>: Downloads a JBoss AS which was tested against the current jBPM version if it is not available
+        <literal>get.jboss</literal>: まだ無ければ、現在のjBPMのバージョンに対応したJBoss ASをダウンロードする。
       </listitem>
       <listitem> 
-        <literal>get.tomcat</literal>: Downloads tomcat which was tested against the current jBPM version if it is not available
+        <literal>get.tomcat</literal>: まだ無ければ、現在のjBPMのバージョンに対応したtomcatをダウンロードする。
       </listitem>
       <listitem> 
-        <literal>hsqldb.databasemanager</literal>: Starts the hsqldb database manager
+        <literal>hsqldb.databasemanager</literal>: hsqldb database managerを起動する
       </listitem>
       <listitem>
-        <literal>install.eclipse</literal>:  Unzips eclipse, downloads eclipse if it is not available
+        <literal>install.eclipse</literal>:  まだ無ければ、eclipseをダウンロードして、unzipする。
       </listitem>
       <listitem>  
         <literal>install.jboss</literal>: Downloads JBoss if its not available and then unzips it
@@ -405,17 +403,17 @@
     </section>
 
     <section>
-      <title>Configuring the jBPM runtime</title>
+      <title>jBPMランタイムを設定する</title>
       <itemizedlist>
-        <listitem>Click <literal>Window</literal> --> <literal>Preferences</literal> </listitem>
-        <listitem>Select <literal>JBoss jBPM</literal> --> <literal>jBPM 4</literal> --> <literal>Runtime Locations</literal> </listitem>
-        <listitem>Click <literal>Add...</literal> </listitem>
-        <listitem>In the <literal>Add Location</literal> dialog, enter a name like e.g. <literal>jbpm-4.0</literal> and then click <literal>Search...</literal> </listitem>
-        <listitem>In the <literal>Browse For Folder</literal> dialog, select your jbpm home directory and click <literal>OK</literal> </listitem>
-        <listitem>Click <literal>OK</literal> in the <literal>Add Location</literal> dialog</listitem>
+        <listitem><literal>Window</literal> --> <literal>Preferences</literal>をクリックします。 </listitem>
+        <listitem><literal>JBoss jBPM</literal> --> <literal>jBPM 4</literal> --> <literal>Runtime Locations</literal>を選択します。</listitem>
+        <listitem><literal>Add...</literal>をクリックします。</listitem>
+        <listitem><literal>Add Location</literal>ダイアログで、nameを入力します（例えば<literal>jbpm-4.0</literal>など）。<literal>Search...</literal>をクリックします。</listitem>
+        <listitem><literal>Browse For Folder</literal>ダイアログで、jbpmをインストールしたホームディレクトリを選択してから<literal>OK</literal>をクリックします。</listitem>
+        <listitem><literal>Add Location</literal>ダイアログで<literal>OK</literal>をクリックします。</listitem>
       </itemizedlist>
       <figure id="gpd.runtime.location">
-        <title>Defining jBPM Libraries</title>
+        <title>jBPMライブラリを定義する</title>
         <mediaobject><imageobject><imagedata align="center" fileref="images/gpd.runtime.location.png"/></imageobject></mediaobject>
       </figure>
     </section>
@@ -430,42 +428,40 @@
         <listitem><literal>Window</literal> --> <literal>Preferences</literal>をクリックします。</listitem>
         <listitem><literal>Java</literal> --> <literal>Build Path</literal> --> <literal>User Libraries</literal>を選択します。</listitem>
         <listitem><literal>New...</literal>をクリックします。</listitem>
-        <listitem>Type name <literal>jBPM Libraries</literal> </listitem>
-        <listitem>Click <literal>Add JARs...</literal> </listitem>
-        <listitem>Navigate to the 'lib' folder of your jBPM installation</listitem>
-        <listitem>Select all jar files and click <literal>Open</literal> </listitem>
-        <listitem>Select the <literal>jBPM Libraries</literal> entry</listitem>
-        <listitem>Click <literal>Add JARs...</literal> again</listitem>
-        <listitem>Select the <literal>jbpm.jar</literal> file in the root of your jBPM installation</listitem>
-        <listitem>Click <literal>Open</literal> </listitem>
-        <listitem>Select entry <literal>Source attachment</literal> under <literal>jbpm.jar</literal> </listitem>
-        <listitem>Click <literal>Edit</literal> </listitem>
-        <listitem>In dialog <literal>Source Attachment Configuration</literal>, click <literal>External Folder...</literal> </listitem>
-        <listitem>Navigate to the <literal>src</literal> folder in your jBPM installation</listitem>
-        <listitem>Click <literal>Choose</literal> </listitem>
-        <listitem>Click <literal>OK</literal> twice to close all the open dialogs</listitem>
+        <listitem>name欄に<literal>jBPM Libraries</literal>と入力します。</listitem>
+        <listitem><literal>Add JARs...</literal>をクリックします。</listitem>
+        <listitem>jBPMのインストール先の'lib'フォルダを指定します。</listitem>
+        <listitem>すべてのjarファイルを選択し、<literal>Open</literal>をクリックします。</listitem>
+        <listitem><literal>jBPM Libraries</literal>を選択します。</listitem>
+        <listitem>もう一度<literal>Add JARs...</literal>をクリックします。</listitem>
+        <listitem>jBPMのインストール先直下にある、<literal>jbpm.jar</literal>ファイルを選択します。</listitem>
+        <listitem><literal>Open</literal>をクリックします。</listitem>
+        <listitem><literal>jbpm.jar</literal>の<literal>Source attachment</literal>を選択します。</listitem>
+        <listitem><literal>Edit</literal>をクリックします。</listitem>
+        <listitem><literal>Source Attachment Configuration</literal>ダイアログで、<literal>External Folder...</literal>をクリックします。</listitem>
+        <listitem>jBPMのインストール先の<literal>src</literal>フォルダを選択します。</listitem>
+        <listitem><literal>Choose</literal>をクリックします。</listitem>
+        <listitem>開いているすべてのダイアログを閉じるために、<literal>OK</literal>を２回クリックします。</listitem>
       </itemizedlist>
       <figure id="gpd.install.libraries">
-        <title>Defining jBPM Libraries</title>
+        <title>jBPMライブラリを定義する</title>
         <mediaobject><imageobject><imagedata align="center" fileref="images/gpd.install.libraries.png"/></imageobject></mediaobject>
       </figure>
     </section>
     
     <section>
-      <title>Adding jPDL 4 schema to the catalog</title>
-      <para>In case you want to edit the process XML sources directly, it is best to specify 
-      your schema in the XML catalog.  This will give you better code completion while 
-      editing the process sources.
+      <title>jPDL 4スキーマをカタログに追加する</title>
+      <para>プロセス定義XMLを直接編集するような場合は、あらかじめXMLカタログにスキーマを登録しておけば便利です。そうしておけば、XML編集時にコード補完が使えるようになります。
       </para>
       <itemizedlist>
-        <listitem>Click <literal>Window</literal> --> <literal>Preferences</literal> </listitem>
-        <listitem>Select <literal>XML</literal> --> <literal>XML Catalog</literal></listitem>
-        <listitem>Click 'Add...'</listitem>
-        <listitem>The 'Add XML Catalog Entry' dialog opens</listitem>
-        <listitem>Click the button with the map-icon next to location and select 'File System...'</listitem>
-        <listitem>In the dialog that opens, select file <literal>jpdl-4.0.xsd</literal> 
-        in the src directory of the jBPM installation root.</listitem>
-        <listitem>Click 'Open' and close all the dialogs</listitem>
+        <listitem><literal>Window</literal> --> <literal>Preferences</literal>をクリックします。</listitem>
+        <listitem><literal>XML</literal> --> <literal>XML Catalog</literal>を選択します。</listitem>
+        <listitem>'Add...'をクリックします。</listitem>
+        <listitem>'Add XML Catalog Entry'ダイアログを開きます。</listitem>
+        <listitem>'Next Catalog'と書かれたアイコンをクリックし、'File System...'を選択します。</listitem>
+        <listitem>ダイアログで、jBPMのインストール先の直下にある<literal>jpdl-4.0.xsd</literal>を選択します。 
+        </listitem>
+        <listitem>'Open'をクリックし、すべてのダイアログを閉じます。</listitem>
       </itemizedlist>
       <figure id="gpd.install.xml.catalog">
         <title>Adding jPDL 4 schema to the Catalog</title>
