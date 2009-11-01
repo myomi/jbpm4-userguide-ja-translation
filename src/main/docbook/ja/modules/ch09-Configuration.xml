@@ -1,11 +1,11 @@
 <chapter id="configuration">
-  <title>Configuration</title>
+  <title>設定</title>
 
   <section>
-    <title>Business calendar</title>
-    <para>To customize the business calendar configuration,
-    remove the import of the default business calendar configuration
-    and replace it with your customized calendar configuration. E.g.
+    <title>ビジネスカレンダー</title>
+    <para>ビジネスカレンダーの設定をカスタマイズするには、
+    デフォルトのビジネスカレンダーの設定ファイルのimportを削除して、
+    代わりに自身でカスタマイズした設定を追加してください。例えば、
     </para>
     <programlisting>&lt;jbpm-configuration&gt;
     
@@ -29,8 +29,7 @@
   
   <section>
     <title>Email</title>
-    <para>TODO document supported config customization 
-    of the jbpm.mail.properties</para>
+    <para>TODO jbpm.mail.propertiesのカスタマイズについて記述予定</para>
   </section>  
 
 </chapter>
