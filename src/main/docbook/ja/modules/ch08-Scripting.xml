@@ -1,15 +1,14 @@
 <chapter id="scripting">
-  <title>Scripting</title>
+  <title>スクリプト</title>
   
-  <para>Only jUEL is configured as the scripting language.  jUEL is 
-  an implementation of the Unified Expression Language.  For detailed description 
-  of how to use UEL, please refer to  
+  <para>jUELだげがスクリプト言語として設定されています。jUELは
+  the Unified Expression Languageの実装です。
+  UELの使い方につていの詳細は、
   <ulink url="http://java.sun.com/javaee/5/docs/tutorial/doc/bnahq.html">
-  the JEE 5 Tutorial, section Unified Expression Language</ulink>  
+  JEE 5チュートリアルのUnified Expression Languageの章</ulink>を参照してください。  
   </para>
   
-  <para>To configure other scripting languages then jUEL, please 
-  refer to the developer's guide (non supported).
+  <para>jUEL以外のスクリプト言語を設定する場合は、ディベロッパーガイドを参照してください（サポート対象外です）。
   </para>
 
 </chapter>
