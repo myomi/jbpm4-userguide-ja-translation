@@ -174,46 +174,46 @@
         <literal>hsqldb.databasemanager</literal>: hsqldb database managerを起動する
       </listitem>
       <listitem>
-        <literal>install.eclipse</literal>:  まだ無ければ、eclipseをダウンロードして、unzipする。
+        <literal>install.eclipse</literal>:  まだ無ければ、eclipseをダウンロードしてunzipする。
       </listitem>
       <listitem>  
-        <literal>install.jboss</literal>: Downloads JBoss if its not available and then unzips it
+        <literal>install.jboss</literal>: まだ無ければ、JBossをダウンロードしてunzipする。
       </listitem>
       <listitem>  
-        <literal>install.jbpm.into.jboss</literal>: Installs jBPM into JBoss
+        <literal>install.jbpm.into.jboss</literal>: jBPMをJBossにインストールする
       </listitem>
       <listitem>  
-        <literal>install.tomcat</literal>: Downloads tomcat to ${tomcat.distro.dir} if its not available and then unzips tomcat
+        <literal>install.tomcat</literal>: まだ無ければ、tomcatを${tomcat.distro.dir}にダウンロードしてunzipする。
       </listitem>
       <listitem>   
-        <literal>install.jbpm.into.tomcat</literal>: Installs jBPM into tomcat
+        <literal>install.jbpm.into.tomcat</literal>: jBPMをtomcatにインストールする
       </listitem>
       <listitem>   
-        <literal>install.examples.into.tomcat</literal>: Deploys all the example processes
+        <literal>install.examples.into.tomcat</literal>: すべてのexampleプロセスをデプロイします。
       </listitem>
       <listitem>
-        <literal>install.signavio.into.jboss</literal>: Installs signavio into jboss
+        <literal>install.signavio.into.jboss</literal>: signavioをjbossにインストールします。
       </listitem>
       <listitem> 
-        <literal>install.signavio.into.tomcat</literal>: Installs signavio into tomcat
+        <literal>install.signavio.into.tomcat</literal>: signavioをtomcatにインストールします。
      </listitem>
       <listitem>   
-        <literal>load.example.identities</literal>: Loads the example users and groups into the database
+        <literal>load.example.identities</literal>: example用のユーザとグループをデータベースにロードします。
       </listitem>
       <listitem>  
-        <literal>reinstall.jboss</literal>: Deletes the previous jboss installation and re-installs jboss
+        <literal>reinstall.jboss</literal>: 以前インストールしたjbossを削除してから、インストールし直します。
       </listitem>
       <listitem>   
-        <literal>reinstall.jboss.and.jbpm</literal>: Deletes the previous jboss installation and re-installs jboss and installs jbpm in it
+        <literal>reinstall.jboss.and.jbpm</literal>: 以前インストールしたjbossを削除してから、インストールし直した上で、jbpmをインストールします。
       </listitem>
       <listitem>   
-        <literal>reinstall.tomcat</literal>: Deletes the previous tomcat installation and re-installs tomcat
+        <literal>reinstall.tomcat</literal>: 以前インストールしたtomcatを削除してから、インストールし直します。
       </listitem>
       <listitem>  
-        <literal>reinstall.tomcat.and.jbpm</literal>: Deletes the previous tomcat installation and re-installs tomcat and installs jbpm in it
+        <literal>reinstall.tomcat.and.jbpm</literal>: 以前インストールしたtomcatを削除してから、インストールし直した上で、jbpmをインストールします。
       </listitem>
       <listitem>   
-        <literal>start.eclipse</literal>: Starts eclipse
+        <literal>start.eclipse</literal>: eclipseを起動します。
       </listitem>
       <listitem>  
         <literal>start.jboss</literal>: Starts jboss and waits till jboss is booted, then lets jboss run in the background
@@ -278,8 +278,7 @@
 
   <section id="tomcat">
     <title>Tomcat</title>
-    <para>The target <literal>install.jbpm.into.tomcat</literal> will install jBPM into
-    your JBoss 5 installation. 
+    <para><literal>install.jbpm.into.tomcat</literal>ターゲットを使用すれば、jBPMをtomcatにインストールできます。
     </para>
   </section>
 
