@@ -57,36 +57,34 @@
     <para>jBPMサポートポータルのユーザフォーラムに問題を報告する際は、以下のテンプレートを使用してください。
     </para>
     <programlisting><emphasis role="bold">=== Environment ==============================</emphasis>
-- <emphasis role="bold">jBPM Version</emphasis> : which version of jBPM are you using?
-- <emphasis role="bold">Database</emphasis> : which database and which version of that database
-- <emphasis role="bold">JDK</emphasis> : which Java version are you using? use 'java -version' to find out
-- <emphasis role="bold">Container</emphasis> : which container are you using? (JBoss, Tomcat, etc.)
-- <emphasis role="bold">Configuration</emphasis> : is your jbpm.cfg.xml only using imports from the jbpm.jar
-   lib itself? or did you create a custom config file?
-- <emphasis role="bold">Libraries</emphasis> : are you using the exact versions of the libs from inside the jbpm
-   distribution of the version that you're using? or did you change some of the libs?
+- <emphasis role="bold">jBPM Version</emphasis> : ご使用のjBPMのバージョン
+- <emphasis role="bold">Database</emphasis> : ご使用のデータベースの種類とバージョン
+- <emphasis role="bold">JDK</emphasis> : Javaのバージョン。'java -version'コマンドで表示される値を記入してください
+- <emphasis role="bold">Container</emphasis> : コンテナの種類(JBoss、Tomcatなど)
+- <emphasis role="bold">Configuration</emphasis> : 使用しているjbpm.cfg.xmlファイルは、jbpm.jarに含まれる設定ファイルをインポートしているだけか。
+   それとも、カスタマイズしているかを教えてください
+- <emphasis role="bold">Libraries</emphasis> : jBPMのインストール内容に含まれている依存ライブラリを使っているか。それとも
+   他のバージョンを使っているかを教えてください
 
 <emphasis role="bold">=== Process ==================================</emphasis>
-paste jPDL process here
+jPDLプロセスファイルの内容をここに貼付けてください。
 
 <emphasis role="bold">=== API ===================================</emphasis>
-paste the relevant code snippet that you use to invoke jBPM
+jBPMを実行しているコードの断片をここに貼付けてください。
 
 <emphasis role="bold">=== Stacktrace ==============================</emphasis>
-paste full stack trace here
+スタックトレースをここに貼付けてください
 
 <emphasis role="bold">=== Debug logs ==============================</emphasis>
-paste debug logs here
+デバッグログをここに貼付けてください
 
 <emphasis role="bold">=== Problem description =========================</emphasis>
-Keep this part short and to the point. E.g. API doesn't work as expected. 
-or e.g. method ExecutionService.signalExecutionById throws exception.</programlisting>
-    <para>Clever readers will have noticed that some of these questions point to probably causes :-)
-    Especially tweaking the libs and configuration can easily lead to trouble.  That's why 
-    we have spend a great deal of effort to include default installations and a simplified 
-    configuration mechanism with imports.  Think twice before you start to customize 
-    configurations beyond what is indicated in this userguide.  Also think twice before 
-    replacing libs with other versions.     
+短めに、要点をおさえて書いてね。例えば "API doesn't work as expected. "
+とか、"method ExecutionService.signalExecutionById throws exception."のようにね。</programlisting>
+    <para>賢明な読者なら、どこが問題になりやすいか気付くでしょう :-)
+    依存ライブラリや設定を変更すると問題になりやすいですよね。ですので、我々はデフォルトのインストールとシンプルな設定メカニズムに
+    尽力しているのです。ユーザガイドの範囲を超えて設定ファイルをカスタマイズする際は慎重に行ってください。
+    依存ライブラリのバージョンを変更するのも慎重にね。
     </para>
   </section>
 

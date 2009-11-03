@@ -1,33 +1,28 @@
 <chapter id="deployingbusinessarchives">
-  <title>Deploying business archives</title>
+  <title>ビジネスアーカイブをデプロイする</title>
   
-  <para>A business archive is a collection of files 
-  assembled in a jar formatted file.  The files in 
-  a business archive can be jPDL process files, forms,
-  classes, process image and other process resources.
+  <para>ビジネスアーカイブは、jarファイルの集合です。
+  ビジネスアーカイブには、jPDLプロセスファイル、フォームファイル、classファイル、プロセス画像ファイルや、
+  その他のプロセスリソースファイルが含まれます。
   </para>
   
   <section id="deployingprocessfilesandprocessresources">
-    <title>Deploying process files and process resources</title>
+    <title>プロセスファイルやプロセスリソースをデプロイする</title>
 
-    <para>Process files and process resources have to be 
-    deployed in the process repository which is stored in 
-    the database.
+    <para>プロセスファイルやプロセスリポジトリを使用するには、データベース上のプロセスリポジトリにデプロイしなければなりません。
     </para>
     
-    <para>There is a jBPM ant task to deploy business archives
-    (<literal>org.jbpm.pvm.internal.ant.JbpmDeployTask</literal>).
-    The <literal>JbpmDeployTask</literal> can deploy individual  
-    process files and business archives.  They are deployed  
-    directly to the database over a JDBC connection.  So it is a 
-    requirement that the database is up and running before you can 
-    deploy processes. 
+    <para>ビジネスアーカイブをデプロイするためのantタスクが用意されています
+    (<literal>org.jbpm.pvm.internal.ant.JbpmDeployTask</literal>)。
+    この<literal>JbpmDeployTask</literal>を使えば個々のプロセスファイルや
+    ビジネスアーカイブをデプロイすることができます。ビジネスアーカイブやプロセスファイル
+    はJDBCコネクションを使用してデータベースにデプロイされます。そのためデプロイには、
+    あらかじめデータベースを起動しておく必要があります。
     </para>
     
-    <para>An example of creating and deploying a business 
-    archive can be found in the ant build script (build.xml) in the examples directory of the 
-    distribution.  Let's look at the relevant parts.  First a path is 
-    declared that includes the jbpm.jar and all its dependencies.  
+    <para>ビジネスアーカイブの作成とデプロイの例が、
+    jBPMのexamplesディレクトリ直下のantビルドスクリプト (build.xml)にあります。
+    関連する箇所を見てみましょう。まず最初に、依存ライブラリの宣言を見てください。
     </para>
     
     <programlisting>&lt;path id=&quot;jbpm.libs.incl.dependencies&quot;&gt;
@@ -38,23 +33,20 @@
   &lt;fileset dir=&quot;${jbpm.home}/lib&quot; /&gt;
 &lt;/path&gt;</programlisting>
 
-    <para>The JDBC driver jar(s) for your database should also be included
-    in the path.  MySQL, PostgreSQL and HSQLDB are in the distribution.  But
-    the Oracle driver you have to download separately from the oracle site since 
-    we're not allowed to redistribute that file. 
+    <para>このパスの中にご使用のデータベースのJDBCドライバが含まれているか、確認してください。
+    jBPMにはMySQL、PostgreSQL、HSQLDBのドライバが同梱されています。
+    Oracleのドライバーは再配布が許可されていないために同梱していません。別途ダウンロードしてください。
     </para>
 
-    <para>When a business archive is deployed, jBPM scans for all the files 
-    with the <literal>.jpdl.xml</literal> extension in the business archive.
-    All those files will be parsed as jPDL processes and made available to the
-    runtime engine.  All other resources in the business archive will also 
-    be stored as resources in that deployment and made accessible through
-    <literal>InputStream getResourceAsStream(long deploymentDbid, String resourceName);</literal>
-    in class <literal>RepositoryService</literal> 
+    <para>ビジネスアーカイブがデプロイされると、jBPMはその中から、
+    拡張子が<literal>.jpdl.xml</literal>のすべてのファイルを検索します。
+    見つかったすべてのファイルがjPDLプロセスとしてパースされ、ランタイムエンジン上で実行可能になります。
+    その他のファイルは、リソースとして保存され、
+    <literal>RepositoryService</literal>クラスの<literal>InputStream getResourceAsStream(long deploymentDbid, String resourceName);</literal>
+    メソッドを使ってアクセス可能になります。
     </para>
     
-    <para>For creating a business archives, the <literal>jar</literal> task
-    can be used.
+    <para>ビジネスアーカイブの作成には、<literal>jar</literal>タスクが使用されています。
     </para>
     
     <programlisting>&lt;jar destfile=&quot;${jbpm.home}/examples/target/examples.bar&quot;&gt;
@@ -64,25 +56,25 @@
   &lt;/fileset&gt;
 &lt;/jar&gt;</programlisting>
     
-    <para>Before the jbpm-deploy task can be used it need to be declared like this:</para>
+    <para>jbpm-deployを利用可能にするためには、以下のように宣言しておく必要があります。</para>
     
     <programlisting>&lt;taskdef name=&quot;jbpm-deploy&quot;
     classname=&quot;org.jbpm.pvm.internal.ant.JbpmDeployTask&quot;
     classpathref=&quot;jbpm.libs.incl.dependencies&quot; /&gt;</programlisting>
          
-    <para>Then the ant task can be used like this</para>
+    <para>これで、以下のようにjbpm-deployタスクが利用可能になります。</para>
     
     <programlisting>&lt;jbpm-deploy file=&quot;${jbpm.home}/examples/target/examples.bar&quot; /&gt;</programlisting>
 
-    <table><title><literal>jbpm-deploy</literal> attributes:</title>
+    <table><title><literal>jbpm-deploy</literal>の属性:</title>
       <tgroup cols="5" rowsep="1" colsep="1">
         <thead>
           <row>
-            <entry>Attribute</entry>
-            <entry>Type</entry>
-            <entry>Default</entry>
-            <entry>Required?</entry>
-            <entry>Description</entry>
+            <entry>属性</entry>
+            <entry>型</entry>
+            <entry>デフォルト値</entry>
+            <entry>必須？</entry>
+            <entry>説明</entry>
           </row>
         </thead>
         <tbody>
@@ -90,41 +82,40 @@
             <entry><literal>file</literal></entry>
             <entry>file</entry>
             <entry></entry>
-            <entry>optional</entry>
-            <entry>A file to be deployed.  Files ending with <literal>.xml</literal> will be deployed 
-            as process files.  Files ending with <literal>ar</literal> like .bar or .jar 
-            will be deployed as business archives.
+            <entry>任意</entry>
+            <entry>ファイル名が<literal>.xml</literal>で終わるファイルはプロセスファイルとしてデプロイされます。
+            ファイル名が.barや.jarのような、<literal>ar</literal>で終わるファイルの場合は、ビジネスアーカイブとしてデプロイされます。
             </entry>
           </row>
           <row>
             <entry><literal>cfg</literal></entry>
             <entry>file</entry>
             <entry>jbpm.cfg.xml</entry>
-            <entry>optional</entry>
-            <entry>Points to the jbpm configuration file that has to be on the classpath in which 
-            the <literal>jbpm-deploy</literal> task was defined.
+            <entry>任意</entry>
+            <entry>
+            <literal>jbpm-deploy</literal>タスクのクラスパス上にあるべき、jbpm設定ファイルを指定します。
             </entry>
           </row>
         </tbody>
       </tgroup>
     </table>
-    <table><title><literal>jbpm-deploy</literal> elements:</title>
+    <table><title><literal>jbpm-deploy</literal>の子要素:</title>
       <tgroup cols="3" rowsep="1" colsep="1">
         <thead>
           <row>
-            <entry>Element</entry>
-            <entry>Multiplicity</entry>
-            <entry>Description</entry>
+            <entry>要素名</entry>
+            <entry>多重度</entry>
+            <entry>説明</entry>
           </row>
         </thead>
         <tbody>
           <row>
             <entry><literal>fileset</literal></entry>
             <entry>0..*</entry>
-            <entry>files to be deployed expressed as a plain ant fileset.
-            Files ending with <literal>.xml</literal> will be deployed 
-            as process files.  Files ending with <literal>ar</literal> like .bar or .jar 
-            will be deployed as business archives.</entry>
+            <entry>デプロイするファイルをantのfilesetで指定します。
+            ファイル名が<literal>.xml</literal>で終わるファイルはプロセスファイルとしてデプロイされます。
+            ファイル名が.barや.jarのような、<literal>ar</literal>で終わるファイルの場合は、ビジネスアーカイブとしてデプロイされます。
+            </entry>
           </row>
         </tbody>
       </tgroup>
@@ -133,8 +124,8 @@
   </section>
   
   <section id="deployingclasses">
-    <title>Deploying classes</title>
-    <para>Since version 4.2 jBPM has a process classloading mechanism as in jBPM 3.
+    <title>クラスファイルをデプロイする</title>
+    <para>jBPMのバージョン4.2から、バージョン3と同様のクラスローディングが追加されました。
     </para>
     <para>Classes that are referenced from processes must be made available in one of 
     3 ways:
