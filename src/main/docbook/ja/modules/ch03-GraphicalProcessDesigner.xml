@@ -1,42 +1,40 @@
 <chapter id="graphicalprocessdesigner">
-  <title>Graphical Process Designer (GPD)</title>
+  <title>グラフィカルプロセスデザイナ(GPD)</title>
   
-  <para>This chapter will explain how to work with the Graphical Process Designer. 
-  After installing the GPD and setting up the examples, you'll see that the 
-  jPDL process files will get a special icon.  Double clicking such a file 
-  in the package view will open up the jPDL process in the GPD.
+  <para>この章では、グラフィカルプロセスデザイナの使い方を説明します。
+  GPDをインストールすれば、jPDLプロセスファイルが専用のアイコンで表示されていると思います。
+  Eclipseのパッケージビュー上でプロセスファイルをダブルクリックしたら、GPDのエディタでファイルが開きます。
   </para>
   <figure id="gpd">
-    <title>The GPD</title>
+    <title>GPD</title>
     <mediaobject><imageobject><imagedata align="center" fileref="images/gpd.png"/></imageobject></mediaobject>
   </figure>
   
   <section id="creatingnewprocessfile">
-    <title>Creating a new process file</title>
-    <para>CRTL+N will open up the wizard selector.
+    <title>新規プロセスファイルを作成する</title>
+    <para>CRTL+Nで選択ウィザードが起動します。
     </para>
     <figure id="gpd.new.process.wizard">
-      <title>Select wizard dialog</title>
+      <title>選択ウィザードダイアログ</title>
       <mediaobject><imageobject><imagedata align="center" fileref="images/gpd.new.process.wizard.png"/></imageobject></mediaobject>
     </figure>
-    <para>Select jBPM --> jPDL 4 File.  Click 'Next &gt;'.  Then the 
-    'New jPDL 4 File' wizard opens.  
+    <para>jBPM --> jPDL 4 Fileを選択し、'Next &gt;'をクリックします。すると、
+    'New jPDL 4 File'ウィザードが開きます。
     </para>
     <figure id="gpd.new.process.file">
-      <title>Create a new process dialog</title>
+      <title>新規プロセス作成ダイアログ</title>
       <mediaobject><imageobject><imagedata align="center" fileref="images/gpd.new.process.file.png"/></imageobject></mediaobject>
     </figure>
-    <para>Select the parent directory, enter a file name and click 'Finish'.  Voila, 
-    you've created your first jPDL process file.
+    <para>ファイルを作成するディレクトリを選択してファイル名を入力したら、'Finish'をクリックします。これで初めてのjPDLプロセスファイルが作成できました。
     </para>
   </section>
 
   <section id="editingtheprocesssource">
-    <title>Editing the process source</title>
-    <para>The GPD contains a 'Source' tab with the XML sources. These are directly editable in
-    this tab and the graphical view will reflect the changes when you switch back to the diagram.</para>
+    <title>プロセスファイルを編集する</title>
+    <para>GPDには、XMLソースを見ることができる'Source'タブがあります。このタブでXMLを直接編集することができます。
+    diagramタブに戻ると編集結果がすぐに反映されます。</para>
     <figure id="gpd.source.tab">
-       <title>Editing jPDL using the source view</title>
+       <title>sourceビューでjPDLを編集する</title>
       <mediaobject><imageobject><imagedata align="center" fileref="images/gpd.xml.view.png"/></imageobject></mediaobject>
     </figure>
   </section>
