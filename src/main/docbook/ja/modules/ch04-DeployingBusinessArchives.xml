@@ -127,33 +127,29 @@
     <title>クラスファイルをデプロイする</title>
     <para>jBPMのバージョン4.2から、バージョン3と同様のクラスローディングが追加されました。
     </para>
-    <para>Classes that are referenced from processes must be made available in one of 
-    3 ways:
+    <para>クラスをプロセスから利用可能にするには、以下の３種類の方法の中から１つを選ばなければなりません。
     </para>
     <itemizedlist>
-      <listitem>as .class files in your business archive.  Unlike in jBPM 3, now the
-      root of the archive file is used as the root for searching class resources.
-      So when class <literal>com.superdeluxsandwiches.Order</literal>
-      is referenced in the process file, it will be found when it is in the same business 
-      archive with entry name <literal>com/superdeluxsandwiches/Order.class</literal>
-      Classes are cached (key is a combination of deployment and context classloader), so 
-      it should perform better then in jBPM 3. 
+      <listitem>.classファイルをビジネスアーカイブにする方法。jBPM 3とは異なり、
+      アーカイブファイルのルートが、クラスを検索する際のルートとなります。
+      したがって、<literal>com.superdeluxsandwiches.Order</literal>というクラスが
+      プロセスファイル内で参照された場合、プロセスエンジンは
+      <literal>com/superdeluxsandwiches/Order.class</literal>という名称で登録された
+      ビジネスアーカイブを検索します。
+      一度ロードされたクラスはキャッシュされますので (キャッシュのキーはデプロイとコンテキストクラスローダの組み合わせです）、 
+      jBPM 3よりもパフォーマンスの向上が望めます。
       </listitem>
-      <listitem>as classes available in the web application that calls jBPM.  Even when 
-      jBPM is deployed server-wide on jboss or tomcat, jBPM will find the classes 
-      in your web application or enterprise application that calls jBPM.  That's because 
-      we use the current context classloader when searching for classes during process 
-      execution. 
+      <listitem>jBPMを利用するwebアプリケーションに含まれるクラスを使用する方法。Even when 
+      jBPMがjbossやtomcatなどのサーバー再度にデプロイされた場合、jBPMを利用するwebアプリケーションやエンタープライズアプリケーション
+      に含まれるクラスが検索対象になります。これは、プロセスの実行中にはjBPMは現在のコンテキストクラスローダを使用してクラスを検索するためです。
       </listitem>
-      <listitem>as class files that are available server-wide.  E.g. like the jars in  
-      the lib directories in tomcat and jboss.
+      <listitem>tomcatやjbossのlibディレクトリ内のjarファイルのように、サーバで利用可能な場所にclassファイルを設置する方法。
       </listitem>
     </itemizedlist>
-    <para>In case of the examples, an examples.jar file is created with 
-    all the classes and it is put in the <literal>lib</literal> directory of the JBoss 
-    server configuration.  Similarly for tomcat.  See target <literal>install.examples.into.tomcat</literal>
-    and <literal>install.examples.into.jboss</literal>.  In one of the future releases we might 
-    switch to include the classes in the business archive itself.
+    <para>jBPMに同梱されているexamplesの場合、すべてのクラスファイルを含んだexamples.jarファイルを作成して、JBossの<literal>lib</literal>ディレクトリに設置しています。
+    詳しくは、jBPMのinstallディレクトリ直下にあるbuild.xmlの<literal>install.examples.into.tomcat</literal>ターゲットと
+    <literal>install.examples.into.jboss</literal>ターゲットを参照してください。今後のリリースでビジネスアーカイブ内のクラスも検索対象に含めるように
+    機能を変更するかもしれません。
     </para>
   </section>
 
