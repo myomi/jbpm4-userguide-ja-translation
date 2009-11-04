@@ -216,19 +216,19 @@
         <literal>start.eclipse</literal>: eclipseを起動します。
       </listitem>
       <listitem>  
-        <literal>start.jboss</literal>: Starts jboss and waits till jboss is booted, then lets jboss run in the background
+        <literal>start.jboss</literal>: jbossを起動し、起動が完了するまで待機した上で、バックグラウンドで実行させます。
       </listitem>
       <listitem>   
-        <literal>start.tomcat</literal>: Starts Tomcat and waits till it is booted, then lets Tomcat run in the background
+        <literal>start.tomcat</literal>: Tomcatを起動し、起動が完了するまで待機した上で、バックグラウンドで実行させます。
       </listitem>
       <listitem>  
-        <literal>stop.jboss</literal>: signals jboss to stop, but doesn't wait till its finished
+        <literal>stop.jboss</literal>: jbossを停止を指示します。が、停止を待たずに処理を終了します。
       </listitem>
       <listitem>   
-        <literal>stop.tomcat</literal>: Signals Tomcat to stop, but doesn't wait till its finished
+        <literal>stop.tomcat</literal>: Tomcatを停止を指示します。が、停止を待たずに処理を終了します。
       </listitem>
       <listitem>   
-        <literal>upgrade.jbpm.schema</literal>:  Upgrades the jBPM tables in the database to the current version
+        <literal>upgrade.jbpm.schema</literal>:  データベース上のjBPM用のテーブルを現在のバージョン向けにアップグレードします。
       </listitem>
       </itemizedlist>
     </para>
@@ -283,7 +283,7 @@
   </section>
 
   <section id="signavio">
-    <title>Signavio web based process editor</title>
+    <title>Signavio webベースプロセスエディタ</title>
     <para>The targets <literal>install.signavio.into.jboss</literal> and 
     <literal>install.signavio.into.tomcat</literal> will install the Signavio web based 
     process editor into JBoss or Tomcat respectively. 
@@ -463,7 +463,7 @@
         <listitem>'Open'をクリックし、すべてのダイアログを閉じます。</listitem>
       </itemizedlist>
       <figure id="gpd.install.xml.catalog">
-        <title>Adding jPDL 4 schema to the Catalog</title>
+        <title>jPDL 4スキーマをカタログに追加する</title>
         <mediaobject><imageobject><imagedata align="center" fileref="images/gpd.install.xml.catalog.png"/></imageobject></mediaobject>
       </figure>
     </section>
@@ -482,22 +482,22 @@
         <listitem><literal>examples</literal>プロジェクトが自動的に検索され、選択された状態になっていることを確認します。</listitem>
         <listitem><literal>Finish</literal>をクリックします。</listitem>
       </itemizedlist>
-      <para>After setting the <link linkend="definejbpmuserlibraries">jBPM User Libraries</link> 
-      and importing the examples, all the examples can be run as JUnit tests.  Right click 
-      on a test and select 'Run As' --> 'JUnit Test'.  
+      <para><link linkend="definejbpmuserlibraries">jBPMユーザライブラリ</link>の項に従って設定済みならば、
+      examplesに含まれるすべての例がJUnitテストとして実行可能になっています。テストを実行するには、テストクラス上で右クリックして、
+      'Run As' --> 'JUnit Test'を選択してください。
       </para>
-      <para>You're all set to start playing with the coolest Java process technology!</para>
+      <para>これで、いかしたJavaのプロセステクノロジーをがしがし試す準備がすべて整いましたよ！</para>
     </section>
 
     <section>
-      <title>Adding deployment with ant</title>
-      <para>You can leverage the eclipse ant integration to ease deployment of processes.
-      We'll show you how it works with the examples.  Then you can copy this practice in your 
-      own project.  First, open up the Ant view.  
+      <title>antを使ったデプロイ機能を追加する</title>
+      <para>手軽にプロセスをデプロイするには、Eclipseのant機能を使うとよいでしょう。
+      ここでは、先ほどのexamplesを使ってやり方を説明します。この方法を参考にして、ご自身のプロジェクトに適用してください。
+      最初に、EclipseのAntビューを開いてください。
       </para>
       <itemizedlist>
-        <listitem>Select <literal>Window</literal> --> <literal>Show View</literal> --> <literal>Other...</literal> --> <literal>Ant</literal> --> <literal>Ant</literal></listitem>
-        <listitem>Then drag the build file <literal>build.xml</literal> in the examples project from the package explorer to the Ant view</listitem>
+        <listitem><literal>Window</literal> --> <literal>Show View</literal> --> <literal>Other...</literal> --> <literal>Ant</literal> --> <literal>Ant</literal>を選択します。</listitem>
+        <listitem>パッケージエクスプローラより、examplesプロジェクト内の<literal>build.xml</literal>をドラッグして、Antビュー内にドロップしてください。</listitem>
       </itemizedlist>
     </section>
 
