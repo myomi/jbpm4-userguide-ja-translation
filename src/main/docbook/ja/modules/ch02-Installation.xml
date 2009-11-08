@@ -238,10 +238,10 @@
     </para>
     <para>Also following properties are customizeable</para>
     <itemizedlist>
-      <listitem><literal>database</literal> : Default value is <literal>hsqldb</literal>.  Alternative values 
-      are <literal>mysql</literal>, <literal>oracle</literal> and <literal>postgresql</literal></listitem>
-      <listitem><literal>jboss.version</literal> : Default value is <literal>5.0.0.GA</literal>.  Alternative 
-      value is <literal>5.1.0.GA</literal></listitem>
+      <listitem><literal>database</literal> : デフォルト値は <literal>hsqldb</literal> です。他に、
+       <literal>mysql</literal>、 <literal>oracle</literal>、 <literal>postgresql</literal>が利用可能です。</listitem>
+      <listitem><literal>jboss.version</literal> : デフォルト値は <literal>5.0.0.GA</literal> です。他に、
+       <literal>5.1.0.GA</literal> が利用可能です。</listitem>
     </itemizedlist>
     <para>To customize the values for these properties, just use <literal>-D</literal> like this
     </para>

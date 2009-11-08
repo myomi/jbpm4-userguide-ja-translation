@@ -1,54 +1,50 @@
 <chapter id="services">
-  <title>Services</title>
+  <title>サービス</title>
   
   <section id="processdefinitionprocessinstanceandexecutions">
-    <title>Process definition, process instance and executions</title>
-    <para>A process definition is description of the steps in a procedure.
-    For example, an insurance company could have a <literal>loan</literal> 
-    process definition that describes the steps of how the company deals 
-    with loan requests.
+    <title>プロセス定義、プロセスインスタンス、エグゼキューション</title>
+    <para>プロセス定義とは、処理の個々のステップを記述したものです。
+    例えば、ある保険会社について考えてみると、
+    その保険会社がローンの要請をどのように取り扱うか、そのステップを記述した、以下のような<literal>ローン</literal> プロセス定義を持っているかもしれません。
     </para> 
     <figure id="loan.process.definition.example">
-      <title>The loan process definition example</title>
+      <title>ローンプロセス定義の例</title>
       <mediaobject><imageobject><imagedata align="center" fileref="images/loan.process.definition.png"/></imageobject></mediaobject>
     </figure>
-    <para>One process instance represents one particular run of a process definition.
-    For example, the loan request of John Doe last Friday to finance his new boat 
-    is represented in one process instance of the loan process definition.
+    <para>１つのプロセスインスタンスが、プロセス定義の１つの特定の実行状態を表しています。
+    例えば、先週の金曜日 John Doe からボートを買うのに融資してくれといったローンの要請があった場合、
+    それがローンプロセス定義上の１つのプロセスインスタンスとして表現されます。
     </para>
-    <para>A process instance contains all the runtime state.  The 
-    most prominent property is the pointer that keeps track of the current activity.
+    <para>プロセスインスタンスは、実行時の状態をすべて保持しています。その中でも最も重要なプロパティは、
+    現在のアクティビティを指すポインタです。
     </para>
     <figure id="loan.process.instance.example">
-      <title>The loan process instance example</title>
+      <title>ローンプロセスインスタンスの例</title>
       <mediaobject><imageobject><imagedata align="center" fileref="images/loan.process.instance.png"/></imageobject></mediaobject>
     </figure>
-    <para>Suppose that wiring the money and archiving can be done in parallel.
-    Then the main process instance will have two child executions to keep 
-    track of the state like this:   
+    <para>送金とアーカイブを平行して実施すると仮定してみましょう。
+    プロセスインスタンスは、下図のように、二つの子エグゼキューションを持つでしょう。
     </para>
     <figure id="loan.executions.example">
-      <title>The loan executions example</title>
+      <title>ローンエグゼキューションの例</title>
       <mediaobject><imageobject><imagedata align="center" fileref="images/loan.executions.png"/></imageobject></mediaobject>
     </figure>
-    <para>More general, a process instance is the root of a tree of executions.
-    When a new process instance is started, the process instance is in fact the root 
-    execution scope.  Only leaf executions can be active.
+    <para>より一般的に言うと、プロセスインスタンスは、エグゼキューションツリーのルートです。
+    新しいプロセスインスタンスが開始されると、プロセスインスタンスはエグゼキューションスコープのルートになります。
+    リーフのエグゼキューションだけがアクティブになり得ます。
     </para>
-    <para>The motivation to work with a tree structure like this is that
-    this conceptually remains simple in the case where there is only one path 
-    of execution.  The services API doesn't need to make a functional difference 
-    between process instances and executions.  Therefore, the API has only 
-    one Execution type to refer to both <literal>ProcessInstance</literal>s and 
-    <literal>Execution</literal>s. 
+    <para>なぜこのようなツリー構造と採っているかというと、実行の１つのパスだけがある場合において、構造をシンプルにできるからです。
+    サービスAPIのレベルでは、プロセスインスタンスとエグゼキューションを機能的な違いを考える必要がありません。
+    したがって、サービスAPIにおいて、
+     <literal>プロセスインスタンス</literal> と
+    <literal>エグゼキューション</literal> に言及するのに、Execution型だけを持っています。
     </para>
   </section>
 
   <section id="processengine">
-    <title>ProcessEngine</title>
-    <para>Interacting with jBPM occurs through services.
-    The service interfaces can be obtained from the <literal>ProcessEngine</literal>
-    which is build from a <literal>Configuration</literal>.  
+    <title>プロセスエンジン</title>
+    <para>jBPMとの対話は、サービスAPIを通して行います。
+    サービスのインターフェイスは <literal>Configuration</literal>から生成される、 <literal>ProcessEngine</literal> より取得できます。
     </para>
     <para>A <literal>ProcessEngine</literal> is thread safe and can be stored in a 
     static member field or even better in JNDI or some other central location.  
