@@ -46,38 +46,34 @@
     <para>jBPMとの対話は、サービスAPIを通して行います。
     サービスのインターフェイスは <literal>Configuration</literal>から生成される、 <literal>ProcessEngine</literal> より取得できます。
     </para>
-    <para>A <literal>ProcessEngine</literal> is thread safe and can be stored in a 
-    static member field or even better in JNDI or some other central location.  
-    One <literal>ProcessEngine</literal> object can be used by all requests and 
-    threads in an application.  Here's how you can obtain a <literal>ProcessEngine</literal>
+    <para><literal>ProcessEngine</literal> はスレッドセーフです。ですので、staticなメンバーフィールドに値を保持することができますし、
+    JNDIやその他の主要な場所に配置するのがより良いでしょう。
+    一つの <literal>ProcessEngine</literal> オブジェクトがアプリケーション上のすべてのリクエストやスレッドを受け付けることができます。
+    この節では、<literal>ProcessEngine</literal>の取得方法について説明します。
     </para>
     
-    <para>The code snippets in this section and the next section about process 
-    deployments are taken from the example 
-    <literal>org.jbpm.examples.services.ServicesTest</literal> 
+    <para>本節やプロセスのデプロイについて説明する次節に登場するコードの断片は、
+    <literal>org.jbpm.examples.services.ServicesTest</literal> の例から採ったものです。 
     </para>
     
     <programlisting>ProcessEngine processEngine = new Configuration()
       .buildProcessEngine();</programlisting>
     
-    <para>The previous code snippet shows how to build a <literal>ProcessEngine</literal>
-    from the default configuration file <literal>jbpm.cfg.xml</literal> which is 
-    expected in the root of the classpath.  If you want to specify another 
-    resource location, use the <literal>setResource</literal> method like this: 
+    <para>このコードは、クラスパスのルートにあるはずの <literal>jbpm.cfg.xml</literal> というデフォルトの設定ファイルから、 <literal>ProcessEngine</literal>
+    インスタンスを作成する方法を示しています。もし、別の場所にある設定ファイルを使用したい場合は、以下のように <literal>setResource</literal> メソッドを使用してください。
     </para>
     
     <programlisting>ProcessEngine processEngine = new Configuration()
       .setResource("my-own-configuration-file.xml")
       .buildProcessEngine();</programlisting>
     
-    <para>There are other <literal>setXxxx</literal> methods that allow to specify 
-    the configuration content as an <literal>InputStream</literal>, an 
-    <literal>xmlString</literal>, <literal>InputSource</literal>, 
-    <literal>URL</literal> or  <literal>File</literal>.  
+    <para>
+    この他にも、<literal>InputStream</literal>や、
+    <literal>xmlString</literal>や、 <literal>InputSource</literal>や、 
+    <literal>URL</literal> や、 <literal>File</literal>といった、設定内容を細かく指定するための <literal>setXxxx</literal> メソッドが用意されています。
     </para>
   
-    <para>From a <literal>ProcessEngine</literal> the following services 
-    can be obtained:
+    <para><literal>ProcessEngine</literal> から、以下のサービスを取得することができます。
     </para>
     
     <programlisting><emphasis role="bold">RepositoryService</emphasis> repositoryService = processEngine.getRepositoryService();
@@ -86,9 +82,8 @@
 <emphasis role="bold">HistoryService</emphasis> historyService = processEngine.getHistoryService();
 <emphasis role="bold">ManagementService</emphasis> managementService = processEngine.getManagementService();</programlisting>
 
-    <para>Process engine objects defined in the configuration can also be retrieved by 
-    type (<literal>processEngine.get(Class&lt;T&gt;)</literal>) 
-    or by name (<literal>processEngine.get(String)</literal>)</para>
+    <para>上記の方法の他にも、設定ファイル内で定義されているオブジェクトは、型を指定したり(<literal>processEngine.get(Class&lt;T&gt;)</literal>) 、
+    名前を指定することで (<literal>processEngine.get(String)</literal>)取得することができます。</para>
 
   </section>
 
