@@ -88,121 +88,111 @@
   </section>
 
   <section id="deployingaprocess">
-    <title>Deploying a process</title>
-    <para>The <literal>RepositoryService</literal> groups all methods to manage 
-    the repository of deployments.  In this first example, we'll deploy one process 
-    resource from the classpath with the <literal>RepositoryService</literal>:
+    <title>プロセスをデプロイする</title>
+    <para><literal>RepositoryService</literal> 配置（デプロイ）を管理するメソッドをまとめたものです。
+    最初の例は、 <literal>RepositoryService</literal> を使用して、クラスパス上のプロセスリソースをデプロイする例です。
     </para>
     <programlisting>String deploymentId = repositoryService.createDeployment()
     .addResourceFromClasspath("org/jbpm/examples/services/Order.jpdl.xml")
     .deploy();</programlisting>
-    <para>Analogue to the <literal>addResourceFromClasspath</literal> method above, 
-    the source of the processes definitions XML can be picked up from a file, url, string, 
-    input stream or zip input stream.
+    <para>前述の <literal>addResourceFromClasspath</literal> メソッドとよく似たメソッドで、
+    file、url、string、input stream、zip input streamからプロセス定義XMLを読み込むことができます。
     </para>
-    <para>Each deployment is composed of a set of named resources.  The content 
-    of each resource is a byte array.  jPDL process files are recognized by their extension 
-    <literal>.jpdl.xml</literal>.  Other resource types are task forms and java classes.  
+    <para>個々のデプロイは、名前付きリソースの集合です。個々のリソースの内容はバイト配列です。
+    jPDLプロセスファイルは、<literal>.jpdl.xml</literal> という拡張子によって認識されます。
+    その他のリソースの型は、taskフォームやjavaのクラスです。
     </para>
-    <para>A deployment works with a set of named resources and can potentially contain 
-    multiple process descriptions and multiple other artifact types.  The jPDL deployer 
-    will recognise process files based on the <literal>.jpdl.xml</literal> 
-    extension automatically.  
+    <para>デプロイは、複数の名前付きリソースのまとまりに対して行われるため、複数のプロセス定義や、複数の型を含み得ます。
+    jPDLデプロイヤは、<literal>.jpdl.xml</literal> という拡張子を自動的に認識します。
     </para>
-    <para>During deployment, an <literal>id</literal> is assigned to the process 
-    definitions.  The <literal>id</literal> will have format 
-    <literal>{key}-{version}</literal> with a dash between key and version
+    <para>デプロイ時に、プロセス定義毎に <literal>id</literal> が割り当てられます。
+    <literal>id</literal> は、キーとバージョンをダッシュでつないだ<literal>{key}-{version}</literal> というフォーマットです。
     </para>
-    <para>If <literal>key</literal> is not provided, it is generated automatically 
-    based on the name.  All non alpha numeric characters in the name will be replaced 
-    by underscores to generate the key.
+    <para><literal>key</literal> が与えられていない場合は、nameを元にした値が、キーとして自動的に生成されます。
+    その際、nameに使用されているアルファベットと数字以外の文字はすべてアンダースコアに置き換えられて、キーの値となります。
     </para>
-    <para>The same <literal>name</literal> can only be associated to one 
-    <literal>key</literal> and vice versa.
+    <para>同じ <literal>name</literal> だけが一つの
+    <literal>key</literal> に関連づけられますし、逆もまたしかりです。
     </para>
-    <para>If <literal>version</literal> is not provided, a <literal>version</literal> 
-    will be automatically be assigned.  For version 
-    assignment, the versions of all deployed process definitions with the same name will 
-    be taken into account.  The assigned <literal>version</literal> will be one higher 
-    then the highest <literal>version</literal> number of deployed process definitions 
-    with the same <literal>key</literal>.  If no process definitions with a similar
-    <literal>key</literal> have been deployed, version number 1 is assigned. 
+    <para><literal>version</literal> が与えられていない場合は、<literal>version</literal> 
+    が自動的に割り当てられます。バージョンを割り当てるために、同名のすべてのデプロイ済みの定義ファイルのバージョンが
+    考慮に入れられます。新たに割り当てられる <literal>version</literal> は、既存の同じ<literal>key</literal>のプロセス定義のうち、
+    最も大きな <literal>version</literal> 番号よりも一つ大きな値になります。
+    もし、同じ <literal>key</literal> のプロセス定義が一つもデプロイされていない場合は、バージョン番号は1になります。
     </para>
-    <para>In this first example, we'll supply a name and nothing else.</para>
+    <para>最初二示すのは、nameだけを定義している例です。</para>
     <programlisting>&lt;process name=&quot;Insurance claim&quot;&gt;
 ...
 &lt;/process&gt;</programlisting>
-    <para>Let's assume that this is the first time that this process gets deployed.
-    Then it will get the following properties:
+    <para>このプロセスを初めてデプロイするとしましょう。その場合、以下のプロパティを取得することができます。
     </para>
-    <table><title>Process properties without key</title>
+    <table><title>key無しの場合のプロセスプロパティ</title>
       <tgroup cols="3" rowsep="1" colsep="1">
         <thead>
           <row>
-            <entry>Property</entry>
-            <entry>Value</entry>
-            <entry>Source</entry>
+            <entry>プロパティ</entry>
+            <entry>値</entry>
+            <entry>取得元</entry>
           </row>
         </thead>
         <tbody>
           <row>
             <entry><literal>name</literal></entry>
             <entry>Insurance claim</entry>
-            <entry>process xml</entry>
+            <entry>プロセス xml</entry>
           </row>
           <row>
             <entry><literal>key</literal></entry>
             <entry>Insurance_claim</entry>
-            <entry>generated</entry>
+            <entry>自動生成</entry>
           </row>
           <row>
             <entry><literal>version</literal></entry>
             <entry>1</entry>
-            <entry>generated</entry>
+            <entry>自動生成</entry>
           </row>
           <row>
             <entry><literal>id</literal></entry>
             <entry>Insurance_claim-1</entry>
-            <entry>generated</entry>
+            <entry>自動生成</entry>
           </row>
         </tbody>
       </tgroup>
     </table>
-    <para>And as a second example, we'll show how you can get shorter ids by 
-    specifying a process key:</para>
+    <para>次に示すのが、キーを定義することによって先ほどよりも短いidを取得できるという例です。</para>
     <programlisting>&lt;process name=&quot;Insurance claim&quot; key=&quot;ICL&quot;&gt;
 ...
 &lt;/process&gt;</programlisting>
-    <para>Then the process definition properties look like this:</para>
-    <table><title>Process properties with key</title>
+    <para>この場合、プロセス定義のプロパティは以下のようになります。</para>
+    <table><title>keyありの場合のプロセスプロパティ</title>
       <tgroup cols="2" rowsep="1" colsep="1">
         <thead>
           <row>
-            <entry>Property</entry>
-            <entry>Value</entry>
-            <entry>Source</entry>
+            <entry>プロパティ</entry>
+            <entry>値</entry>
+            <entry>取得元</entry>
           </row>
         </thead>
         <tbody>
           <row>
             <entry><literal>name</literal></entry>
             <entry>Insurance claim</entry>
-            <entry>process xml</entry>
+            <entry>プロセスxml</entry>
           </row>
           <row>
             <entry><literal>key</literal></entry>
             <entry>ICL</entry>
-            <entry>process xml</entry>
+            <entry>プロセスxml</entry>
           </row>
           <row>
             <entry><literal>version</literal></entry>
             <entry>1</entry>
-            <entry>generated</entry>
+            <entry>自動生成</entry>
           </row>
           <row>
             <entry><literal>id</literal></entry>
             <entry>ICL-1</entry>
-            <entry>generated</entry>
+            <entry>自動生成</entry>
           </row>
         </tbody>
       </tgroup>
