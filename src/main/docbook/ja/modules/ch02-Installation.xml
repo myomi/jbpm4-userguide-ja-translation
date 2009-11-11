@@ -243,11 +243,11 @@
       <listitem><literal>jboss.version</literal> : デフォルト値は <literal>5.0.0.GA</literal> です。他に、
        <literal>5.1.0.GA</literal> が利用可能です。</listitem>
     </itemizedlist>
-    <para>To customize the values for these properties, just use <literal>-D</literal> like this
+    <para>これらのプロパティの値をカスタマイズしたければ、以下のように <literal>-D</literal> オプションを使用してください。
     </para>
     <programlisting>ant -Ddatabase=postgresql demo.setup.jboss</programlisting>
-    <para>Alternatively you can specify the customized values in 
-    <literal>${user.home}/.jbpm4/build.properties</literal> 
+    <para>もしくは、
+    <literal>${user.home}/.jbpm4/build.properties</literal> を編集してもかまいません。 
     </para>
   </section>
 
@@ -284,9 +284,8 @@
 
   <section id="signavio">
     <title>Signavio webベースプロセスエディタ</title>
-    <para>The targets <literal>install.signavio.into.jboss</literal> and 
-    <literal>install.signavio.into.tomcat</literal> will install the Signavio web based 
-    process editor into JBoss or Tomcat respectively. 
+    <para><literal>install.signavio.into.jboss</literal> ターゲットや
+    <literal>install.signavio.into.tomcat</literal> ターゲットを使用すれば、JBossやTomcatにSignavio webベースプロセスエディタ をインストールすることができます。
     </para>
   </section>
 
