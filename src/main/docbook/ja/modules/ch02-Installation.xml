@@ -358,45 +358,41 @@
   </section>
 
   <section id="graphicalprocessdesigner">
-    <title>Graphical Process Designer (GPD)</title>
-    <para>Eclipse is used as the platform to host the jPDL graphical process
-    designer. This section will describe how to obtain and install Eclipse and 
-    how to install the GPD plugin in Eclipse.</para>
+    <title>グラフィカルプロセスデザイナ (GPD)</title>
+    <para>Eclipse は、jPDLファイルのグラフィカルプロセスデザイナを提供するプラットフォームとして使用されます。
+    本節では、Eclipseの取得方法とインストール方法および、GPDプラグインのインストール方法について説明します。
+    </para>
     <section>
-      <title>Get Eclipse</title>
-      <para>You'll need Eclipse 3.5.0.
+      <title>Eclipseを取得する</title>
+      <para>Eclipse 3.5.0が必要です。
       </para>
-      <para>Use the <link linkend="gettingstartedquickly">demo setup</link> or download 
-      eclipse manually:      
+      <para><link linkend="gettingstartedquickly">demo setup</link>ターゲットを使用するか、以下のURLからご自身でダウンロードするかして、Eclipseを取得してください。
       <ulink url="http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/galileo">Eclipse IDE for Java EE Developers (163 MB)</ulink>.
       </para>
-      <para>The classic version of eclipse will not be sufficient as it does 
-      not have an XML editor.  Eclipse for Java developers should also 
-      work.
+      <para>Eclipseのclassicバージョンは、XMLエディタが付属していないため、機能が充分ではありません。 
+      Eclipse for Java developers も同様です。
       </para>
     </section>
     <section>
-      <title>Install the GPD plugin into eclipse</title>
-      <para>The installation of the GPD uses the Eclipse Software Update 
-      mechanism and is pretty straightforward. There is an archived update 
-      site included in the runtime installation of jBPM when you unzip it 
-      at <literal>install/src/gpd/jbpm-gpd-site.zip</literal> 
+      <title>GPD プラグインをEclipseにインストールする</title>
+      <para>GPDのインストールには、Eclipseのソフトウェアアップデート機能を使用するのがよいでしょう。
+      jBPMのインストール先の <literal>install/src/gpd/jbpm-gpd-site.zip</literal> に、アーカイブされたアップデートサイトがあります。 
       </para>
-      <para>To add the update site to eclipse:
+      <para>Eclipseにアップデートサイトを追加するには
       </para>
       <itemizedlist>
-        <listitem><literal>Help</literal> --> <literal>Install New Software...</literal></listitem> 
-        <listitem>Click <literal>Add...</literal> </listitem>
-        <listitem>In dialog <literal>Add Site</literal> dialog, click <literal>Archive...</literal></listitem>
-        <listitem>Navigate to <literal>install/src/gpd/jbpm-gpd-site.zip</literal> and click 'Open'</listitem>
-        <listitem>Clicking <literal>OK</literal> in the <literal>Add Site</literal> dialog will bring you back to the dialog 'Install'</listitem>
-        <listitem>Select the <literal>jPDL 4 GPD Update Site</literal> that has appeared</listitem>
-        <listitem>Click <literal>Next...</literal> and then <literal>Finish</literal></listitem>
-        <listitem>Approve the license</listitem>
-        <listitem>Restart eclipse when that is asked</listitem>
+        <listitem><literal>Help</literal> --> <literal>Install New Software...</literal> を選択する</listitem> 
+        <listitem> <literal>Add...</literal> をクリックする</listitem>
+        <listitem> <literal>Add Site</literal> ダイアログで、 <literal>Archive...</literal> をクリックする</listitem>
+        <listitem><literal>install/src/gpd/jbpm-gpd-site.zip</literal> を選択して、'Open' をクリックする</listitem>
+        <listitem><literal>Add Site</literal> ダイアログで <literal>OK</literal> をクリックし、'Install'ダイアログに戻る</listitem>
+        <listitem>表示される一覧の中から、 <literal>jPDL 4 GPD Update Site</literal> を選択する</listitem>
+        <listitem><literal>Next...</literal> をクリックし、つづいて <literal>Finish</literal>をクリックする</listitem>
+        <listitem>ライセンスに同意する</listitem>
+        <listitem>再起動を問われたら、Eclipseを再起動する</listitem>
       </itemizedlist>
       <figure id="gpd.install.gpd.site">
-        <title>Adding the GPD local archive site</title>
+        <title>GPDのローカルアーカイブサイトを追加する</title>
         <mediaobject><imageobject><imagedata align="center" fileref="images/gpd.install.gpd.site.png"/></imageobject></mediaobject>
       </figure>
     </section>
