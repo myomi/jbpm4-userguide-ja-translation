@@ -253,10 +253,10 @@
 
   <section id="librarydependenciesandconfigurationfiles">
     <title>依存ライブラリと設定ファイル</title>
-    <para>We provide support for installations of jBPM through our automatic ant  
-    scripts.  Those scripts will put the right libs and the right configuration 
-    files in the right location for you. If you want to create your own installation of 
-    jBPM in your application, see the developers guide for more information.      
+    <para>わたしたちは、antスクリプトによるjBPMのインストールサポートを提供しています。
+    これらのスクリプトを使えば、適切なライブラリと設定ファイルを適切な場所に設置します。
+    antスクリプトを使わずに、ご自身でjBPMをあなたのアプリケーションにインストールしたい場合は、
+    ディベロッパーズガイドを参照してください。
     </para>
   </section>
 
