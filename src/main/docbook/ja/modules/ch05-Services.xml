@@ -207,20 +207,18 @@
 -->
 
   <section id="deletingadeployment">
-    <title>Deleting a deployment</title>
-    <para>Deleting a deployment will remove it from the DB.</para>
+    <title>デプロイしたものを削除するには</title>
+    <para>デプロイを削除すると、デプロイしたものがデータベースから取り除かれます。</para>
     <programlisting>repositoryService.deleteDeployment(deploymentId);</programlisting>
-    <para>That method will throw an exception when there are still active 
-    process executions for process definitions in that deployment.
+    <para>このメソッドを使用する際、デプロイに含まれるプロセス定義ファイルについて、アクティブなプロセス実行が残っている場合は、例外をスローします。
     </para>
-    <para>If you want to cascade deletion of a deployment to all 
-    the process instances of all the process definitions, use
-    <literal>deleteDeploymentCascade</literal>.
+    <para>削除するプロセス定義にひもづく、すべてのプロセスインスタンスのデプロイを連鎖的に削除したい場合は、
+    <literal>deleteDeploymentCascade</literal> メソッドを使用してください。
     </para>
   </section>
 
   <section id="startinganewprocessinstance">
-    <title>Starting a new process instance</title>
+    <title>新しいプロセスインスタンスを開始するには</title>
     
     <section id="inlatest">
       <title>In latest</title>
