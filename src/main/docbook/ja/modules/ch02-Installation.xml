@@ -232,11 +232,12 @@
       </listitem>
       </itemizedlist>
     </para>
-    <para>To specify your jdbc properties that are used in the scripts above (eg.DB schema generation), 
-    the easiest is to update the appropriate properties file in directory <literal>${jbpm.home}/install/jdbc</literal>.  
-    The appropriate properties file will be loaded by the scripts that are DB related. 
+    <para>上記のスクリプトの内、データベースに関する処理(例えば、DB スキーマの生成)で使用されるjdbcのプロパティを変更したい場合、
+     <literal>${jbpm.home}/install/jdbc</literal> ディレクトリにあるプロパティファイル
+    のうち、使用しているデータベースに対応するファイルを編集するのが手っ取り早いです。  
+    DBに関係するスクリプトを実行する際、そのプロパティファイルが読み込まれます。
     </para>
-    <para>Also following properties are customizeable</para>
+    <para>また、以下のプロパティ値がカスタマイズ可能です。</para>
     <itemizedlist>
       <listitem><literal>database</literal> : デフォルト値は <literal>hsqldb</literal> です。他に、
        <literal>mysql</literal>、 <literal>oracle</literal>、 <literal>postgresql</literal>が利用可能です。</listitem>
