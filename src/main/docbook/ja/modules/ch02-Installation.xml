@@ -45,7 +45,7 @@
     <programlisting>ant demo.setup.tomcat</programlisting>
     <para>すると、以下の処理が実行されます。</para>
     <itemizedlist>
-      <listitem>JBoss<literal>${jbpm.home}/jboss-5.0.0.GA</literal>ディレクトリにインストールします。</listitem>
+      <listitem>JBoss を <literal>${jbpm.home}/jboss-5.0.0.GA</literal>ディレクトリにインストールします。</listitem>
       <listitem>先ほどのJBossにjBPMをインストールします。</listitem>
       <listitem>hsqldbをインストールして、バックグラウンドで起動します。</listitem>
       <listitem>jBPMの動作に必要なDBスキーマを作成します。</listitem>
@@ -263,96 +263,88 @@
 
   <section id="jboss">
     <title>JBoss</title>
-    <para>The target <literal>install.jbpm.into.jboss</literal> will install jBPM into
-    your JBoss 5 installation.  Navigate to the install directory and run <literal>ant -p</literal>
-    for more details.  This install script will install jBPM as a JBoss-wide service so 
-    that all applications can use the same jBPM ProcessEngine. 
+    <para><literal>install.jbpm.into.jboss</literal> ターゲットは、JBoss5 にjBPMをインストールします。
+    詳しくは、コンソールで install ディレクトリに移動して、 <literal>ant -p</literal> を実行してください。
+    このインストールスクリプトは、jBPM をJBoss-wideサービスとしてインストールしますので、JBoss上のすべてのアプリケーションが、
+    同じ jBPM プロセスエンジンを使用することができます。
     </para>
-    <para>Specify property <literal>-Djboss.home=PathToYourJBossInstallation</literal> 
-    to customize the path to your JBoss installation.
+    <para>JBoss のインストール先を変更したい場合は、 <literal>-Djboss.home=PathToYourJBossInstallation</literal> 
+    プロパティを指定してください。
     </para>
-    <para>In JBoss, the <literal>ProcessEngine</literal> can be obtained from JNDI 
-    with <literal>new InitialContext().lookup(&quot;java:/ProcessEngine&quot;)</literal>.
-    The same ProcessEngine can be obtained with <literal>Configuration.getProcessEngine()</literal>
+    <para>JBoss では、<literal>new InitialContext().lookup(&quot;java:/ProcessEngine&quot;)</literal>メソッドを使用して、
+    JNDIから<literal>ProcessEngine</literal> を取得することができます。
+    <literal>Configuration.getProcessEngine()</literal>を使用しても、同様の ProcessEngine
+    を取得することができます。
     </para>
   </section>
 
   <section id="tomcat">
     <title>Tomcat</title>
-    <para><literal>install.jbpm.into.tomcat</literal>ターゲットを使用すれば、jBPMをtomcatにインストールできます。
+    <para><literal>install.jbpm.into.tomcat</literal>ターゲットを使用すれば、jBPM を tomcat にインストールできます。
     </para>
   </section>
 
   <section id="signavio">
     <title>Signavio webベースプロセスエディタ</title>
     <para><literal>install.signavio.into.jboss</literal> ターゲットや
-    <literal>install.signavio.into.tomcat</literal> ターゲットを使用すれば、JBossやTomcatにSignavio webベースプロセスエディタ をインストールすることができます。
+    <literal>install.signavio.into.tomcat</literal> ターゲットを使用すれば、JBoss や Tomcat にSignavio webベースプロセスエディタ をインストールすることができます。
     </para>
   </section>
 
   <section id="userwebapp">
     <title>自分のwebアプリケーションに組み込むには</title>
-    <para>If you want to deploy jBPM as a part of your web application, use the
-    install target <literal>create.user.webapp</literal>.  That will 
-    create a web application with jBPM in it, in the location <literal>${jbpm.home}/install/generated/user-webapp</literal>.  
+    <para>ご自身の web アプリケーションの一部として jBPM をデプロイしたい場合は、 <literal>create.user.webapp</literal> ターゲットを使用してください。
+    jBPM を含んだ web アプリケーションのひな形が <literal>${jbpm.home}/install/generated/user-webapp</literal> に作成されます。
     </para>
-    <para>In case you deploy your app on JBoss or another appserver that has the 
-    jta.jar classes, then you need to delete the <literal>${jbpm.home}/install/generated/user-webapp/WEB-INF/lib/jta.jar</literal> 
+    <para>JBoss や、jta.jarを含んだその他のアプリケーションサーバに、jBPM を含んだアプリケーションをデプロイする場合は、
+    <literal>${jbpm.home}/install/generated/user-webapp/WEB-INF/lib/jta.jar</literal> を削除しておく必要があります。 
     </para>
   </section>
 
   <section id="database">
     <title>データベース</title>
-    <para>The install script is also capable of performing database operations
-    such as creating the schema, if you are installing jBPM for the first time,
-    or upgrading the database used with a previous version to the current schema.
-    Dropping the schema is an option as well.
+    <para>初めて jBPM をインストールする際や、古いバージョンで使用されていたデータベースを最新のスキーマに更新したい場合には、
+    スキーマ生成のデータベース操作を実行するインストールスクリプトを使用しましょう。
+	また、スキーマをドロップする機能もあります。
     </para>
-    <para>The prerrequisite for any database operation is to specify your
-    database connection parameters in <literal>${jbpm.home}/install/jdbc</literal>.
+    <para>これらのデータベース操作を行うためには、 <literal>${jbpm.home}/install/jdbc</literal> にあるファイルでデータベース接続パラメータを指定する必要があります。
     </para>
 
     <section id="createdropdb">
       <title>データベーススキーマを生成、削除するには</title>
-      <para>To create the schema, run target <literal>create.jbpm.schema</literal>
-      in the <literal>${jbpm.home}/install</literal> directory. Apart from
-      creating tables and constraints, the mentioned target will initialize
-      table <literal>JBPM4_PROPERTY</literal> with the current engine version
-      (key <literal>db.version</literal>) and the ID generator base value
-      (key <literal>next.dbid</literal>).</para>
-      <para>To drop the schema, simply run target <literal>drop.jbpm.schema</literal>.
-      Be aware that this operation will destroy any data present in the jBPM
-      tables.</para>
+      <para>スキーマを生成するには、<literal>${jbpm.home}/install</literal> ディレクトリ上で <literal>create.jbpm.schema</literal> ターゲットを実行してください。
+      テーブルと制約以外に、前述のターゲットは、現在のエンジンのバージョン(キー <literal>db.version</literal>)とID生成のベース値(キー <literal>next.dbid</literal>)で
+       <literal>JBPM4_PROPERTY</literal> テーブルを初期化します。
+      .</para>
+      <para>スキーマをドロップするには、 <literal>drop.jbpm.schema</literal> ターゲットを実行してください。.
+      このターゲットは、jBPM 用のテーブルに格納されているすべてのデータを削除することを認識してください。</para>
     </section>
 
     <section id="upgradedb">
       <title>既存のデータベースをアップグレードするには</title>
-      <para>To upgrade, run target <literal>upgrade.jbpm.schema</literal>
-      in the <literal>${jbpm.home}/install</literal> directory.</para>
-      <para>Upgrading is a two-fold operation. The foremost step is to add
-      any extra tables, columns or constraints that were introduced in newer
-      versions. Afterwards, seed data is inserted.</para>
-      <para>Between 4.0 and 4.1, table <literal>JBPM4_VARIABLE</literal> got
-      a new column <literal>CLASSNAME_</literal> used to support setting
-      process variables to values of custom types mapped with Hibernate.
-      This column is nullable and left uninitialized since the feature was
-      not operational in 4.0.</para>
-      <para>From 4.1 to 4.2 the upgrade procedure got more interesting.</para>
+      <para>データベースをアップグレードするには、<literal>${jbpm.home}/install</literal> ディレクトリで
+       <literal>upgrade.jbpm.schema</literal> ターゲットを実行してください。</para>
+      <para>アップグレードは、２つの操作からなります。最も重要なステップは、新しいバージョンになって導入された、
+      テーブル、カラム、制約を追加することです。Afterwards, seed data is inserted.</para>
+      <para>4.0 から 4.1 の間に、 <literal>JBPM4_VARIABLE</literal>テーブルに
+       <literal>CLASSNAME_</literal> カラムが追加されました。これは、プロセス変数に、Hibernate でマッピングされたカスタムデータ型の値をセットするのに
+      使用されます。
+      この機能は4.0では使用できなかったため、このカラムはnull可で、初期化されません。</para>
+      <para>4.1 から 4.2 へのアップグレードは、より興味深いです。</para>
       <itemizedlist>
-        <listitem>A new table <literal>JBPM4_PROPERTY</literal>
-        was introduced for storing engine-wide values.</listitem>
-        <listitem>The jBPM version is saved in table <literal>JBPM4_PROPERTY</literal>
-        under key <literal>db.version</literal> to allow for precise
-        identification in future releases.</listitem>
-        <listitem>The ID generation strategy is consistent across databases.
-        The next available ID is calculated by querying all tables having
-        an identifier column, and stored under key <literal>next.dbid</literal>
-        in the <literal>JBPM4_PROPERTY</literal> table.</listitem>
-        <listitem>The process language is set to <literal>jpdl-4.0</literal>
-        for all existing process definitions under key <literal>langid</literal>
-        in table <literal>JBPM4_DEPLOYPROP</literal>. The jPDL parser employs the
-        <literal>langid</literal> property to read process documents in a
-        backwards-compatible manner.</listitem>
+        <listitem>新しいテーブル <literal>JBPM4_PROPERTY</literal> が engine-wide な値を保存する目的で導入されました。
+        </listitem>
+        <listitem>将来のリリース時の正確なバージョン識別を見越して、jBPM のバージョン <literal>db.version</literal> というキーで
+         <literal>JBPM4_PROPERTY</literal> テーブルに保存されます。</listitem>
+        
+        <listitem>ID 生成戦略は各種データベース間で一貫しています。
+        次に利用可能な ID の値は、アイデンティファイアカラムを持つすべてのテーブルを検索することにより算出されます。
+        そして、 <literal>next.dbid</literal> というキーで、
+         <literal>JBPM4_PROPERTY</literal> テーブルに保存されます。</listitem>
+        <listitem>プロセス言語は、
+         <literal>langid</literal> というキーで、存在するすべてのプロセス定義に対して <literal>jpdl-4.0</literal>
+        という値が <literal>JBPM4_DEPLOYPROP</literal> テーブルにセットされます。jPDL パーサがプロセスファイルを読む際に、後方互換
+        で読むために、<literal>langid</literal>プロパティを使用します。</listitem>
       </itemizedlist>
     </section>
   </section>
