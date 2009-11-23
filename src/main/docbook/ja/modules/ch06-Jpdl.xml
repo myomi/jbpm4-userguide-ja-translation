@@ -1,16 +1,15 @@
 <chapter id="jpdl">
   <title>jPDL</title>
   
-  <para>This chapter will explain the jPDL file format for describing 
-  process definitions. jPDL is the prominent process language of jBPM. The goal
-  of jPDL is to be as concise and developer-friendly as possible, while offering
-  every feature you'd expect from a BPM process language.
+  <para>この章では、プロセス定義を記述する jPDL ファイルのフォーマットについて説明します。
+  jPDL は、jBPM の主要なプロセス言語です。jPDL のゴールは、BPMプロセス言語に要求してきたすべての機能に
+  ついて、可能な限り簡潔で、開発者に易しく表現することです。
   </para>
-  <para>The jPDL schema file contains more attributes and elements then this 
-  documentation.  This part of the documentation explains the stable and supported part of jPDL.
-  Experimental/not supported jPDL features can be found in the developers guide. 
+  <para>jPDL スキーマファイルには、本書に掲載されている以外にも多くの属性や要素があります。
+  このパートでは、jPDLのなかでも安定していてサポートされている属性と要素について説明します。
+  jPDLの機能のうち、実験的なものやサポート外のものについてはディベロッパーガイドで説明します。
   </para>
-  <para>An example jPDL process file looks like this: 
+  <para>jPDL プロセスファイルの例を以下に示します。
   </para>
   <programlisting>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 
@@ -38,32 +37,31 @@
   
   <section id="process">
     <title><literal>process</literal></title>
-    <para>The top level element representing one process definition.
+    <para>１つのプロセス定義を表現するトップレベル要素です。
     </para>
-    <table><title><literal>process</literal> attributes:</title>
+    <table><title><literal>process</literal> 属性:</title>
       <tgroup cols="5" rowsep="1" colsep="1">
         <thead>
           <row>
-            <entry>Attribute</entry>
-            <entry>Type</entry>
-            <entry>Default</entry>
-            <entry>Required?</entry>
-            <entry>Description</entry>
+            <entry>属性</entry>
+            <entry>型</entry>
+            <entry>デフォルト値</entry>
+            <entry>必須?</entry>
+            <entry>説明</entry>
           </row>
         </thead>
         <tbody>
           <row>
             <entry><literal>name</literal></entry>
-            <entry>any text</entry>
+            <entry>任意のテキスト</entry>
             <entry></entry>
-            <entry><emphasis role="bold">required</emphasis></entry>
-            <entry>name or label of the process used to display to the process 
-            name in user interactions.
+            <entry><emphasis role="bold">必須</emphasis></entry>
+            <entry>ユーザ操作時にプロセス名として表示するのに使われる名称もしくはラベル名
             </entry>
           </row>
           <row>
             <entry><literal>key</literal></entry>
-            <entry>alpha numeric characters and underscores</entry>
+            <entry>半角英数字とアンダースコア</entry>
             <entry>if omitted, the key will be generated based on the name by replacing 
             all non-alpha-numeric characters with underscores</entry>
             <entry>optional</entry>

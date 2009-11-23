@@ -221,25 +221,22 @@
     <title>新しいプロセスインスタンスを開始するには</title>
     
     <section id="inlatest">
-      <title>In latest</title>
-      <para>Simplest and most common way to start a new process instance for a process 
-      definition is like this: 
+      <title>最新のバージョンのプロセスを使用する</title>
+      <para>プロセス定義に対して、新しいプロセスインスタンスを開始するのに、単純で最もよくやる方法は以下の方法です。
       </para>
       <programlisting>ProcessInstance processInstance = executionService.startProcessInstanceByKey(&quot;ICL&quot;);</programlisting>
-      <para>In this case, the service method will first look up the latest version of 
-      the processes with key <literal>ICL</literal>.  Then a new 
-      process instance is started in that latest process definition.
+      <para>この場合、サービスメソッドは最初にキー名が <literal>ICL</literal> の内で、最新のバージョンを検索します。.  Then a new 
+      そして、新しく生成されたプロセスインスタンスは、その最新のプロセス定義に対して開始されます。
       </para>
-      <para>When a new version of the insurance claim process 
-      is deployed, all invocations of <literal>startProcessInstanceByKey</literal>
-      will automatically switch to the newly deployed version.
+      <para>例示している保険金請求プロセスの新しいバージョンがデプロイされると、
+      <literal>startProcessInstanceByKey</literal> のすべての実行は、自動的に新しくデプロイされたバージョンに切り替わります。
       </para>
     </section>
 
     <section id="specificprocessversion">
-      <title>Specific process version</title>
-      <para>If instead you want to start a new process instance in a very 
-      specific version, you can use the id of the process definition like this:
+      <title>特定のバージョンのプロセスを使用する</title>
+      <para>代わりに特定のバージョンのプロセス定義に対して、新しいプロセスインスタンスを開始したい場合、
+      以下のようにプロセス定義のIDを使用することができます。
       </para>
       <programlisting>ProcessInstance processInstance = 
     executionService.startProcessInstanceById(&quot;ICL-1&quot;);</programlisting>
