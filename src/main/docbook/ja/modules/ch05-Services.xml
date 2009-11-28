@@ -243,32 +243,35 @@
     </section>
 
     <section id="withakey">
-      <title>With a key</title>
-      <para>A new process instance can optionally be given a key.  This key is 
-      a user defined reference to the execution and is sometimes referred to as
-      the 'business key'.  A business key must be unique within the 
-      scope of all versions of a process definition. Typically it is easy 
-      to find such a key in the domain of the business process. For example, an 
-      order id or an insurance claim number.
+      <title>キーを指定してプロセスを開始する</title>
+      <para>新しいプロセスインスタンスを生成する際に、任意でキーを付与することができます。
+      このキーは、ユーザが定義した実行に対する参照であり、時に「ビジネスキー」と呼ばれます。
+      ビジネスキーは、あるプロセス定義のすべてのバージョンのスコープ内でユニークでなければなりません。
+      一般的に言って、ビジネスプロセスの領域でそのようなキーは容易く見つけられます。例えば、
+      注文IDや保険請求番号などです。
       </para>
       <programlisting>ProcessInstance processInstance = 
     executionService.startProcessInstanceByKey(&quot;ICL&quot;, &quot;CL92837&quot;);</programlisting>
-      <para>The key is used to create the id of the process instance.  
-      The format used is <literal>{process-key}.{execution-id}</literal>.  
-      With a dot between process-key and execution-id. 
-      So execution created in the previous code snippet will have id 
-      <literal>ICL.CL92837</literal>.
+      <para>プロセスインスタンスのキーは、プロセスインスタンスのIDを生成するのに使用されます。
+      プロセスインスタンスIDの生成に使用されるフォーマットは、 <literal>{プロセス定義のキー}.{実行ID}</literal> です。
+      プロセス定義のキーと実行IDの値をドットで連結します。
+      したがって、前述のコードから生成される実行に大しては、 <literal>ICL.CL92837</literal> というIDが付与されます。 
+      </para>
+      <para>
+      （※訳注　このパラグラフの説明はわかりにくい。プロセスインスタンスのキーを指定せずにプロセスインスタンスを開始した場合、
+      <literal>{プロセス定義のキー}.{実行ID}</literal> というプロセスインスタンスIDが生成されます（実行IDは自動採番）。また、プロセスインスタンス
+      のキーを指定して開始した場合は、 <literal>{プロセス定義のキー}.{プロセスインスタンスのキー}</literal> という
+      プロセスインスタンスIDが生成されるようです。）
       </para>  
-      <para>If no user defined key is provided, the DB primary key is taken
-      as the key.  In that case, the id can be retrieved like this:   
+      <para>ユーザ定義のキーを指定しない場合は、DB上のプライマリキーの値がキーに使用されます。
+      この場合、IDの値は以下のようにして検索することができます。
       <programlisting>ProcessInstance processInstance = 
     executionService.startProcessInstanceByKey(&quot;ICL&quot;);
 String pid = processInstance.getId();</programlisting>
       </para> 
-      <para>It is a best practice to use a user defined business key. Typically in your application 
-      domain, finding such a key is not difficult. By providing a user defined key, you can 
-      then compose the id of the execution, rather then performing a query based 
-      on the process variables - which is also more costly performance-wise.
+      <para>ユーザが定義したビジネスキーを使用するのがベストプラクティスです。概してアプリケーション領域において、そのようなキーを見つけ出すことは、
+      難しいことではありません。ユーザ定義キーを指定することで、プロセス変数にもとづいたクエリを実行することなく、実行IDを作成します。パフォーマンス向上の観点から見ても、
+      ビジネスキーを使用した方がよいです。
       </para>
     </section>
     
@@ -374,51 +377,44 @@ taskService.setVariables(taskId, variables);</programlisting>
 
   <section id="historyservice">
     <title>HistoryService</title>
-    <para>During runtime execution of process instances, events are generated.  And from 
-    those events, history information on both running and completed process executions are 
-    collected in the history tables.  The <literal>HistoryService</literal> provides 
-    access to that information. 
+    <para>プロセスインスタンスの実行中、様々なイベントが生成されます。そしてそれらのイベントから、プロセス実行の稼働中と完了時の両方における履歴情報が履歴テーブルに収集されます。
+     <literal>HistoryService</literal> この情報にアクセスする手段を提供します。
     </para>
-    <para>Querying for all process instances for a specific process definition can be 
-    done like this:</para>
+    <para>特定のプロセス定義における、すべてのプロセスインスタンスについて検索するには、以下のように行います。</para>
     <programlisting>List&lt;HistoryProcessInstance&gt; historyProcessInstances = historyService
   .createHistoryProcessInstanceQuery()
   .processDefinitionId(&quot;ICL-1&quot;)
   .orderAsc(HistoryProcessInstanceQuery.PROPERTY_STARTTIME)
   .list();</programlisting>
-    <para>Also individual activity executions are stored in the history information as 
-    <literal>HistoryActivityInstance</literal>s.
+    <para>また、個々のアクティビティの実行時の情報が<literal>HistoryActivityInstance</literal>として履歴情報に保存されます。
     </para>
     <programlisting>List&lt;HistoryActivityInstance&gt; histActInsts = historyService
     .createHistoryActivityInstanceQuery()
     .processDefinitionId(&quot;ICL-1&quot;)
     .activityName(&quot;a&quot;)
     .list();</programlisting>
-    <para>Convenience methods <literal>avgDurationPerActivity</literal> and 
-    <literal>choiceDistribution</literal> are also available.  See javadocs for more 
-    information on those methods.
+    <para><literal>avgDurationPerActivity</literal> や
+    <literal>choiceDistribution</literal> といった便利なメソッドもまた利用可能です。これらのメソッドについての詳しい情報は、Javadoc を参照してください。
     </para>
   </section>
 
   <section id="managementservice">
     <title>ManagementService</title>
-    <para>The management service is mostly used to manage the jobs.  See javadocs for 
-    more information.  This functionality is also exposed through the jBPM web console.
+    <para>マネジメントサービスは、主にジョブを管理するために使用されます。詳しい情報は javadoc を参照してください。
+    この機能は jBPM web コンソールを通じても、公開されています。
     </para>
   </section>
 
   <section id="queryApi">
     <title>Query API</title>
     <para>
-    Starting from jBPM 4.0, a new API has been introuced with a query system that 
-    covers most of the queries you can think of. Developers who need to write company-specific
-    queries can of course still rely on Hibernate. But for most use cases,
-    the query API will be more then suffice. 
-    Queries can be written in a unified way on all major jBPM concepts: 
-    Process Instances, Tasks, Deployments, Historical processes, etc.
+    jBPM 4.0 以降、クエリシステムに、あなたが思いつく機能の大半を網羅した新しいAPIが導入されています。
+    固有のクエリを書く必要がある際に、開発者はこれまでのように Hibernate に頼ることももちろんできます。
+    しかし、大半のユースケースでは、このクエリAPIで十分です。
+    クエリは、主要なjBPMのコンセプトであるプロセスインスタンス、タスク、デプロイ、履歴プロセス等において、統一された方法で記述されています。
     </para>
     <para>
-    For example:
+    その一例は以下の通りです。
     <programlisting>
 List&lt;ProcessInstance&gt; results = executionService.createProcessInstanceQuery()
                                        .processDefinitionId(&quot;my_process_definition&quot;)
@@ -426,10 +422,9 @@ List&lt;ProcessInstance&gt; results = executionService.createProcessInstanceQuer
                                        .page(0, 50)
                                        .list();
     </programlisting>
-    This example returns all the process instances of the given process definition
-    which are not suspended. The result is also paged, and the first page of 50
-    results is given. 
-    </para><para>Querying tasks is done in completely the same way:
+    この例は、指定されたプロセス定義における、停止していないプロセスインスタンスの全件を返します。
+    また、この結果はページングされており、例では、先頭ページの５０件を取得しています。
+    </para><para>まったく同様の手順で、タスクを検索することができます。
     <programlisting>
 List&lt;Task&gt; myTasks = taskService.createTaskQuery()
     .processInstanceId(piId)
@@ -438,14 +433,14 @@ List&lt;Task&gt; myTasks = taskService.createTaskQuery()
     .orderDesc(TaskQuery.PROPERTY_DUEDATE)
     .list();
 </programlisting>
-This query will give all the tasks for a given process instance assigned to John, 
-paged of course, in a descending order based on the duedate. 
+このクエリは、Johnに割り当てられたプロセスインスタンスに対するタスクを全件取得します。
+もちろんページングされており、期日の降順で取得しています。
     </para>
     <para>
-    Every service has operations of creating such unified queries (eg. querying
-    jobs through the <literal>ManagementService</literal>, querying completed
-    process instances through the <literal>HistoryService</literal>. Do check
-    the Javadoc of the services to learn everything about the query API.
+    すべてのサービスは、このような統一されたクエリを生成するオペレーションを持っています。例えば、
+     <literal>ManagementService</literal> を通じてジョブを検索するとか、
+     <literal>HistoryService</literal> を通じて、完了したプロセスインスタンスを検索するなどです。 クエリAPIのすべてを学ぶには、各サービスの
+    Javadoc をチェックしてください。
     </para>
   </section>
 

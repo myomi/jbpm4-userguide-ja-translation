@@ -62,9 +62,8 @@
           <row>
             <entry><literal>key</literal></entry>
             <entry>半角英数字とアンダースコア</entry>
-            <entry>if omitted, the key will be generated based on the name by replacing 
-            all non-alpha-numeric characters with underscores</entry>
-            <entry>optional</entry>
+            <entry>省略された場合、キーの値は、nameの値から、半角英数文字以外の文字をアンダースコアに変換して生成されます</entry>
+            <entry>任意</entry>
             <entry>identification to distinct different process definitions.
             Multiple versions of a process with the same key can be deployed.
             The key:name combination must remain exactly the same for all 
